@@ -8,7 +8,7 @@ import { AppMaterialModule } from './app.material.module';
 
 import { AuthModule } from '../auth/auth.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
-import { HistoryModule } from '../history/history.module';
+import { SessionModule } from '../session/session.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AuthModule,
     DashboardModule,
-    HistoryModule,
+    SessionModule,
     AppRoutingModule,
     AppMaterialModule,
   ],

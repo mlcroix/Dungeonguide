@@ -1,20 +1,20 @@
 <div class='wrapper'>
     <div class='float-left'>
-        <div class='history-menu'>
+        <div class='session-menu'>
             <div class='button-menu'>
-                <button class='history-menu-button'>+</button>
+                <button class='session-menu-button'>+</button>
             </div>
-    
+
             <mat-list>
-                <mat-list-item class='history-menu-item' *ngFor="let item of HistoryItems" (click)="SelectStory(item)">
-                    {{ item.name }} 
+                <mat-list-item class='session-menu-item' *ngFor="let item of SessionItems" (click)="SelectStory(item)">
+                    {{ item.name }}
                 </mat-list-item>
             </mat-list>
         </div>
     </div>
     <div class='float-right'>
-        <mat-card class="history-card" *ngIf="SelectedItem">
-            <mat-card-header class='history-card-header'>
+        <mat-card class="session-card" *ngIf="SelectedItem">
+            <mat-card-header class='session-card-header'>
                 <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
                 <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
             </mat-card-header>

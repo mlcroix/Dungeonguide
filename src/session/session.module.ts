@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { HistoryComponent } from './history.component';
+import { SessionComponent } from './session.component';
 import { AppMaterialModule } from '../app/app.material.module';
 
 @NgModule({
     declarations: [
-        HistoryComponent,
+        SessionComponent,
     ],
     imports: [
         AppMaterialModule,
     ],
     exports: [
-        HistoryComponent,
+        SessionComponent,
     ],
     providers: [
 
     ]
 })
-export class HistoryModule { }
+export class SessionModule { }

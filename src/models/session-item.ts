@@ -1,4 +1,4 @@
-export class HistoryItem {
+export class SessionItem {
     public _id: number;
     public name: string;
     public date: Date;
