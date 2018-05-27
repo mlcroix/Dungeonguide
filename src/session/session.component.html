@@ -6,7 +6,7 @@
             </div>
 
             <mat-list>
-                <mat-list-item class='session-menu-item' *ngFor="let item of SessionItems" (click)="SelectStory(item)">
+                <mat-list-item class='session-menu-item' *ngFor="let item of sessions" (click)="SelectStory(item)">
                     {{ item.name }}
                 </mat-list-item>
             </mat-list>

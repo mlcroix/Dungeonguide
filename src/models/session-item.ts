@@ -1,5 +1,6 @@
 export class SessionItem {
-    public _id: number;
+    public _id: string;
+    public campaignId: string;
     public name: string;
     public date: Date;
     public text: string;
