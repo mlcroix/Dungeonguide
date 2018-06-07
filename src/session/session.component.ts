@@ -18,11 +18,21 @@ export class SessionComponent {
     constructor(private sessionService: SessionService) {
       this.sessionService.getSessions().then((result) => {
         this.sessions = result;
-        console.log(this.sessions);
+
+        if (this.sessions.length > 0) {
+          this.SelectStory(this.sessions[0]);
+        }
       });
     }
 
     public SelectStory(sessionitem) {
         this.SelectedItem = sessionitem;
+    }
+
+    public AddStory() {
+      this.sessionService.createSessions('5b018b0760b4261e1badbfe7').then((result) => {
+        this.sessions.push(result);
+        this.SelectedItem = result;
+      });
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,4 +22,25 @@ export class SessionService {
       throw new Error(error.json().message);
     });
 }
+
+public createSessions(campaignId): Promise<SessionItem> {
+  return this.http.get(this.url + campaignId + '/create')
+    .toPromise()
+    .then(response => response.json() as SessionItem)
+    .catch(error => {
+      throw new Error(error.json().message);
+    });
+}
+
+/*
+public postSession(item) {
+  const headers = new Headers({ 'Content-Type': 'application/json' });
+  const options = new RequestOptions({ headers: headers });
+  return this.http.post(this.url + 'new', item, options).toPromise()
+  .then(response => response.json() as SessionItem[])
+  .catch(error => {
+    throw new Error(error.json().message);
+  });
+}
+*/
 }

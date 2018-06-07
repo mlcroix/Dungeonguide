@@ -7,8 +7,8 @@ export class SessionItem {
 
     public constructor() {
         this._id = null;
-        this.name = '';
-        this.date = null;
-        this.text = '';
+        this.name = 'new';
+        this.date = new Date();
+        this.text = 'edit me';
     }
 }
