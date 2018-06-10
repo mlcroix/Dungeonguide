@@ -13,17 +13,22 @@
             </mat-list>
         </div>
     </div>
+
     <div class='float-right'>
-        <mat-card class="session-card" *ngIf="SelectedItem">
-            <mat-card-header class='session-card-header'>
-                <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
-                <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                {{ SelectedItem.text }}
-                </p>
-            </mat-card-content>
-        </mat-card>
+      <div *ngIf="loaded == false">
+          <mat-spinner class="load-spinner"></mat-spinner>
+      </div>
+
+      <mat-card class="session-card" *ngIf="SelectedItem && loaded">
+          <mat-card-header class='session-card-header'>
+              <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
+              <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+              <p>
+              {{ SelectedItem.text }}
+              </p>
+          </mat-card-content>
+      </mat-card>
     </div>
 </div>

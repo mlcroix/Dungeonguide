@@ -12,6 +12,7 @@ import { Observable, Subscription } from 'rxjs';
 
 export class SessionComponent {
     title = 'Session';
+    loaded = false;
     SelectedItem = null;
     public sessions: SessionItem[];
 
@@ -22,6 +23,9 @@ export class SessionComponent {
         if (this.sessions.length > 0) {
           this.SelectStory(this.sessions[0]);
         }
+
+        this.loaded = true;
+        console.log(this.loaded);
       });
     }
 

@@ -7,6 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import 'hammerjs';
 
 @NgModule({
@@ -20,6 +21,7 @@ import 'hammerjs';
     MatSidenavModule,
     MatGridListModule,
     MatListModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -31,6 +33,7 @@ import 'hammerjs';
     MatSidenavModule,
     MatGridListModule,
     MatListModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class AppMaterialModule { }
