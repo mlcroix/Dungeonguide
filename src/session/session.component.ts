@@ -27,6 +27,7 @@ export class SessionComponent {
 
     public SelectStory(sessionitem) {
         this.SelectedItem = sessionitem;
+        console.log(this.SelectedItem);
     }
 
     public AddStory() {
@@ -34,5 +35,28 @@ export class SessionComponent {
         this.sessions.push(result);
         this.SelectedItem = result;
       });
+    }
+
+    public RemoveStory() {
+      this.sessionService.removeSession(this.SelectedItem).then((result ) => {
+        console.log(result);
+        if (result.deleted) {
+          this.removeItemFromArray(this.SelectedItem, this.sessions);
+          if (this.sessions.length > 0) {
+            this.SelectedItem = this.sessions[0];
+          } else {
+            this.SelectedItem = null;
+          }
+        }
+      });
+    }
+
+    private removeItemFromArray(item, array) {
+      for (let i = 0; i < array.length; i++) {
+        if (item === array[i]) {
+          array.splice(i, 1);
+          return i;
+        }
+      }
     }
 }

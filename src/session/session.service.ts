@@ -32,15 +32,14 @@ public createSessions(campaignId): Promise<SessionItem> {
     });
 }
 
-/*
-public postSession(item) {
+public removeSession(item) {
   const headers = new Headers({ 'Content-Type': 'application/json' });
   const options = new RequestOptions({ headers: headers });
-  return this.http.post(this.url + 'new', item, options).toPromise()
-  .then(response => response.json() as SessionItem[])
+  return this.http.post(this.url + 'remove', item, options).toPromise()
+  .then(response => response.json())
   .catch(error => {
     throw new Error(error.json().message);
   });
 }
-*/
+
 }
