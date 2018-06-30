@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'signUp-selector',
     templateUrl: './signUp.component.html',
-    styleUrls: ['./auth.css']
+    styleUrls: ['./auth.scss']
 })
 
 export class SignUpComponent {
