@@ -14,8 +14,6 @@ export class LoginComponent {
     constructor(private authSerive: AuthService) { }
 
     public login(f: NgForm) {
-        let json = JSON.stringify(f);
-        console.log(json);
         this.authSerive.Login(f);
     }
 }

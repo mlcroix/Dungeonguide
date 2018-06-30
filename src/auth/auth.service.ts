@@ -19,7 +19,7 @@ export class AuthService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    var login = this.http.post(this.url + 'login',{username: "bobo",password: "jcbhkjcbak"}, options).toPromise()
+    var login = this.http.post(this.url + 'login',data, options).toPromise()
     .then(response => this.loginCallback(response.json()))
     .catch(error => {
       throw new Error(error.json().message);
