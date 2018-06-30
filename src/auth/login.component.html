@@ -1,5 +1,5 @@
 <div class='login-window'>
-  <form #f="ngForm" (ngSubmit)="login(f)">
+  <form #f="ngForm" (ngSubmit)="login(f.value)">
     <div class="form-group">
       <label for="Username">Username</label>
       <input name="Username" ngModel required #first="ngModel">
