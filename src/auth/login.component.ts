@@ -28,11 +28,13 @@ export class LoginComponent {
         this.authSerive.Login(f).then((result) => {
           this.localStorage.setItem('user', JSON.stringify(result));
           this.loggedIn = true;
+          window.location.reload();
         });
     }
 
     public logout() {
       this.localStorage.removeAllItems();
       this.loggedIn = false;
+      window.location.reload();
     }
 }

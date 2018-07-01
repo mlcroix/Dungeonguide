@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from './app.localStorageService';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,15 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
+    localStorageService: LocalStorageService;
     title = 'Dungeon guide';
-    authenticated: boolean;
+    loggedIn = false;
 
+    public constructor(private router: Router) {
+      this.localStorageService = new LocalStorageService();
 
-
-    public constructor(private router : Router) {
-        this.authenticated = false;
+      if (this.localStorageService.getItem('user')) {
+        this.loggedIn = true;
+      }
     }
 }
