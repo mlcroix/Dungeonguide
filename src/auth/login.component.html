@@ -1,4 +1,7 @@
-<div class='login-window'>
+<div *ngIf="loggedIn">
+    <button mat-button (click)="logout()">Sign out</button>
+</div>
+<div class='login-window' *ngIf="!loggedIn">
   <form #f="ngForm" (ngSubmit)="login(f.value)">
     <div class="form-group">
       <label for="username">Username</label>
@@ -10,7 +13,9 @@
       <input name="password" ngModel required #first="ngModel">
     </div>
 
-    <button type="submit" class="login-button">Login</button>
-
+    <button mat-button type="submit" class="button">Login</button>
+    <button mat-button routerLink='/signup' class="button">Sign up</button>
   </form>
+
+
 </div>

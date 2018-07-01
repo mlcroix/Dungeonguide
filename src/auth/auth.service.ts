@@ -1,4 +1,3 @@
-import { LocalStorageService } from '../app/app.localStorageService';
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,21 +11,18 @@ import { User } from '../models/user';
 export class AuthService {
     private url = 'https://dungeonguide.herokuapp.com/players/';
 
-  public constructor(private http: Http) {
-  }
+  public constructor(private http: Http) { }
 
-  public Login(data) {
+  public Login(data): Promise<User> {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    var login = this.http.post(this.url + 'login',data, options).toPromise()
-    .then(response => this.loginCallback(response.json()))
+    return this.http.post(this.url + 'login', data, options).toPromise()
+    .then(response => response.json() as User)
     .catch(error => {
       throw new Error(error.json().message);
     });
   }
 
-  private loginCallback(response) {
-      console.log(response);
-  }
+
 }
