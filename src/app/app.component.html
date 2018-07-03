@@ -4,6 +4,7 @@
       <button mat-button routerLink='/session'>Sessions</button>
       <span class="example-fill-remaining-space"></span>
       <div *ngIf="loggedIn">
+          <app-campaign-selector></app-campaign-selector>
           <button mat-button routerLink='/profile'>Profile</button>
       </div>
       <app-login-selector></app-login-selector>
