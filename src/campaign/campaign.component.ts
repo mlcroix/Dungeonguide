@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MatMenuModule} from '@angular/material/menu';
 import { CampaignService } from './campaign.service';
 import { LocalStorageService } from '../app/app.localStorageService';
 
@@ -11,6 +12,8 @@ import { LocalStorageService } from '../app/app.localStorageService';
 export class CampaignComponent {
   localStorage: LocalStorageService;
   loggedIn = false;
+  SelectedCampaign = "select a campaign";
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   constructor(private campaignServicee: CampaignService) {
     this.localStorage = new LocalStorageService();
@@ -18,6 +21,15 @@ export class CampaignComponent {
     if (this.localStorage.getItem('user')) {
       this.loggedIn = true;
     }
+
+    const campaign = localStorage.getItem('campaign');
+    if (campaign != null) {
+      this.SelectedCampaign = campaign;
+    }
+  }
+
+  public SelectCampaign(campaignName) {
+    console.log(campaignName);
   }
 
 
