@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, OnDestroy, Input } from '@angular/core
 import { SessionItem } from '../models/session-item';
 import { SessionService } from './session.service';
 import { Observable, Subscription } from 'rxjs';
+import { LocalStorageService } from '../app/app.localStorageService';
 
 
 @Component({
@@ -11,22 +12,31 @@ import { Observable, Subscription } from 'rxjs';
 })
 
 export class SessionComponent {
-    title = 'Session';
+    localStorage: LocalStorageService;
     loaded = false;
     SelectedItem = null;
     public sessions: SessionItem[];
 
     constructor(private sessionService: SessionService) {
-      this.sessionService.getSessions().then((result) => {
-        this.sessions = result;
+      this.localStorage = new LocalStorageService();
 
-        if (this.sessions.length > 0) {
-          this.SelectStory(this.sessions[0]);
+      const user = JSON.parse(this.localStorage.getItem('user'));
+      const campaign = JSON.parse(localStorage.getItem('campaign'));
+      if (user) {
+        if (campaign) {
+          this.sessionService.getSessions(campaign._id).then((result) => {
+            this.sessions = result;
+
+            if (this.sessions.length > 0) {
+              this.SelectStory(this.sessions[0]);
+            }
+
+            this.loaded = true;
+            console.log(this.loaded);
+          });
         }
+      }
 
-        this.loaded = true;
-        console.log(this.loaded);
-      });
     }
 
     public SelectStory(sessionitem) {

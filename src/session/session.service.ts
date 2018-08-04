@@ -14,8 +14,8 @@ export class SessionService {
   public constructor(private http: Http) {
   }
 
- public getSessions(): Promise<SessionItem[]> {
-  return this.http.get(this.url)
+ public getSessions(campaignid): Promise<SessionItem[]> {
+  return this.http.get(this.url + '/' + campaignid)
     .toPromise()
     .then(response => response.json() as SessionItem[])
     .catch(error => {
