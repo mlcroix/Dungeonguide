@@ -12,30 +12,34 @@ import { LocalStorageService } from '../app/app.localStorageService';
 export class CampaignComponent {
   localStorage: LocalStorageService;
   loggedIn = false;
-  SelectedCampaign = 'select a campaign';
+  SelectedCampaign = null;
   Campaigns = [];
 
 
   constructor(private campaignServicee: CampaignService) {
     this.localStorage = new LocalStorageService();
 
-    if (this.localStorage.getItem('user')) {
+    const user = JSON.parse(this.localStorage.getItem('user'));
+    if (user) {
       this.loggedIn = true;
+      this.campaignServicee.getCampaigns(user._id).then((result) => {
+        this.Campaigns = result;
+      });
     }
 
-    const campaign = localStorage.getItem('campaign');
+    const campaign = JSON.parse(localStorage.getItem('campaign'));
     if (campaign != null) {
       this.SelectedCampaign = campaign;
     }
-
-    this.Campaigns.push('Een hele lange campagn naam');
-    this.Campaigns.push('Item 2');
-    this.Campaigns.push('Medium sized item');
-    this.Campaigns.push('ve');
   }
 
-  public SelectCampaign(campaignName) {
-    this.SelectedCampaign = campaignName;
+  public SelectCampaign(campaign) {
+    this.SelectedCampaign = campaign;
+    this.localStorage.setItem('campaign', JSON.stringify(campaign));
+  }
+
+  public CreateCampaign() {
+    console.log('create campaign');
   }
 
 

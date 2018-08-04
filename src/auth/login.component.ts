@@ -20,8 +20,6 @@ export class LoginComponent {
       if (this.localStorage.getItem('user')) {
         this.loggedIn = true;
       }
-
-      console.log(this.loggedIn);
     }
 
     public login(f: NgForm) {

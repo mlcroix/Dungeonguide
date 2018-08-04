@@ -9,5 +9,17 @@ import { Campaign } from '../models/campaign';
 
 @Injectable()
 export class CampaignService {
+  private url = 'https://dungeonguide.herokuapp.com/campaigns';
 
+  public constructor(private http: Http) {
+  }
+
+ public getCampaigns(playerid): Promise<Campaign[]> {
+  return this.http.get(this.url + '/playerid/' + playerid)
+    .toPromise()
+    .then(response => response.json() as Campaign[])
+    .catch(error => {
+      throw new Error(error.json().message);
+    });
+}
 }
