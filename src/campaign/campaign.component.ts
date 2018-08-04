@@ -39,7 +39,13 @@ export class CampaignComponent {
   }
 
   public CreateCampaign() {
-    console.log('create campaign');
+
+    this.campaignServicee.createCampaign(JSON.parse(this.localStorage.getItem('user'))._id).then((result) => {
+      if (result) {
+        this.Campaigns.push(result);
+        console.log(result);
+      }
+    });
   }
 
 

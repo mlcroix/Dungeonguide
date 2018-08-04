@@ -21,5 +21,14 @@ export class CampaignService {
     .catch(error => {
       throw new Error(error.json().message);
     });
-}
+  }
+
+  public createCampaign(playerId): Promise<Campaign> {
+    return this.http.get(this.url + '/' + playerId + '/create')
+      .toPromise()
+      .then(response => response.json() as Campaign)
+      .catch(error => {
+        throw new Error(error.json().message);
+      });
+  }
 }
