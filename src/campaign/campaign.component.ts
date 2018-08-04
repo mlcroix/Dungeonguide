@@ -12,8 +12,9 @@ import { LocalStorageService } from '../app/app.localStorageService';
 export class CampaignComponent {
   localStorage: LocalStorageService;
   loggedIn = false;
-  SelectedCampaign = "select a campaign";
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  SelectedCampaign = 'select a campaign';
+  Campaigns = [];
+
 
   constructor(private campaignServicee: CampaignService) {
     this.localStorage = new LocalStorageService();
@@ -26,10 +27,15 @@ export class CampaignComponent {
     if (campaign != null) {
       this.SelectedCampaign = campaign;
     }
+
+    this.Campaigns.push('Een hele lange campagn naam');
+    this.Campaigns.push('Item 2');
+    this.Campaigns.push('Medium sized item');
+    this.Campaigns.push('ve');
   }
 
   public SelectCampaign(campaignName) {
-    console.log(campaignName);
+    this.SelectedCampaign = campaignName;
   }
 
 

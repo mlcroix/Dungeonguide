@@ -1,9 +1,10 @@
 <div class="campaign-container">
-  <p>Campaign</p>
-    <button mat-button [matMenuTriggerFor]="menu">{{SelectedCampaign}}</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Een hele lange campagn naam</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <button mat-button>+</button>
+  Campaign
+  <button mat-button [matMenuTriggerFor]="menu">{{SelectedCampaign}}</button>
+  <mat-menu #menu="matMenu" >
+    <div *ngFor="let Campaign of Campaigns" (click)="SelectCampaign(Campaign)">
+        <button mat-menu-item> {{ Campaign }}</button>
+    </div>
+    <button mat-button class="add-button">New Campaign</button>
+  </mat-menu>
 </div>
