@@ -1,21 +1,51 @@
 .campaign-container {
   float: left;
   height: 30px;
-  width: 250px;
+  width: 230px;
   margin-right: 100px;
-  p {
-    font-size: 16px;
-    float: left;
-  }
-
-  button {
-    width: 100%;
-    text-align: left;
-  }
 }
 
 .add-button {
   width: 100%;
   text-align: left;
   color: rgb(5, 173, 27);
+}
+
+.campaign-card {
+  height: 250px;
+  width: 200px;
+  margin: 20px;
+  float: left;
+  border-radius: 5px;
+  overflow: hidden;
+  p {
+    margin: -10px;
+  }
+  button {
+    width: 70px;
+    margin-left: 5px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    float: left;
+  }
+}
+
+.load-spinner {
+  height: 400px;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 20%;
+}
+
+.button-select {
+  background-color: greenyellow;
+}
+
+.button-delete {
+  background-color: rgba(255, 32, 32, 0.979);
+}
+
+.button-favorite {
+  background-color: pink;
 }

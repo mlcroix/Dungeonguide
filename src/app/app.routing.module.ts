@@ -4,12 +4,17 @@ import { LoginComponent } from '../auth/login.component';
 import { SignUpComponent } from '../auth/signUp.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { SessionComponent } from '../session/session.component';
+import { CampaignsComponent } from '../campaign/campaigns.component';
+import { CampaignComponent } from '../campaign/campaign.component';
+
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignUpComponent },
     { path: 'session', component: SessionComponent },
+    { path: 'campaigns', component: CampaignsComponent },
+    { path: 'campaign/:id', component: CampaignComponent },
 ];
 
 @NgModule({

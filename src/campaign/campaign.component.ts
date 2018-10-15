@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import {MatMenuModule} from '@angular/material/menu';
+import { Component, Input, OnInit } from '@angular/core';
 import { CampaignService } from './campaign.service';
 import { LocalStorageService } from '../app/app.localStorageService';
+import { Campaign } from '../models/campaign';
 
 @Component({
   selector: 'app-campaign-selector',
@@ -10,19 +10,27 @@ import { LocalStorageService } from '../app/app.localStorageService';
 })
 
 export class CampaignComponent {
+  @Input() campaign: Campaign;
   localStorage: LocalStorageService;
   loggedIn = false;
-  SelectedCampaign = null;
+  SelectedCampaign: Campaign;
   Campaigns = [];
 
+  OnInit() {
+    //*this.SelectCampaign = this.campaign;
+    console.log(this.campaign);
+ }
 
-  constructor(private campaignServicee: CampaignService) {
+
+  public constructor(private campaignService: CampaignService) {
     this.localStorage = new LocalStorageService();
+
+
 
     const user = JSON.parse(this.localStorage.getItem('user'));
     if (user) {
       this.loggedIn = true;
-      this.campaignServicee.getCampaigns(user._id).then((result) => {
+      this.campaignService.getCampaigns(user._id).then((result) => {
         this.Campaigns = result;
       });
     }
@@ -37,16 +45,4 @@ export class CampaignComponent {
     this.SelectedCampaign = campaign;
     this.localStorage.setItem('campaign', JSON.stringify(campaign));
   }
-
-  public CreateCampaign() {
-
-    this.campaignServicee.createCampaign(JSON.parse(this.localStorage.getItem('user'))._id).then((result) => {
-      if (result) {
-        this.Campaigns.push(result);
-        console.log(result);
-      }
-    });
-  }
-
-
 }

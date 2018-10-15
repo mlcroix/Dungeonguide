@@ -1,0 +1,25 @@
+<div *ngIf="loaded">
+    <div *ngFor="let Campaign of Campaigns">
+        <mat-card class="campaign-card" [routerLink]="['/campaign']" [queryParams]= "{campaign: Campaign}">
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <p>{{ Campaign.name }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button class="button-select">
+                    <i class="material-icons">arrow_forward_ios</i>
+                </button>
+                <button class="button-favorite">
+                    <i class="material-icons">favorite_border</i>
+                </button>
+                <button class="button-delete">
+                    <i class="material-icons">delete</i>
+                </button>
+            </mat-card-actions>
+          </mat-card>
+      </div>
+</div>
+
+<div *ngIf="!loaded">
+  <mat-spinner [diameter]="150" class="load-spinner"></mat-spinner>
+</div>
