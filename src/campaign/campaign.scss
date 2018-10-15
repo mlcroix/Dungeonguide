@@ -40,12 +40,21 @@
 
 .button-select {
   background-color: greenyellow;
+  &:hover {
+    background-color: rgb(123, 179, 41);
+  }
 }
 
 .button-delete {
   background-color: rgba(255, 32, 32, 0.979);
+  &:hover {
+    background-color: rgba(151, 13, 13, 0.979);
+  }
 }
 
 .button-favorite {
   background-color: pink;
+  &:hover {
+    background-color: rgb(247, 132, 151);
+  }
 }
