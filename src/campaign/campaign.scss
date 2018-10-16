@@ -5,10 +5,15 @@
   margin-right: 100px;
 }
 
-.add-button {
-  width: 100%;
-  text-align: left;
-  color: rgb(5, 173, 27);
+.button-add-campaign {
+  right:    0;
+  bottom:   0;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  i {
+    font-size: 75px;
+  }
 }
 
 .campaign-card {
@@ -39,7 +44,7 @@
 }
 
 .button-select {
-  background-color: greenyellow;
+  background-color: rgb(144, 236, 5);
   &:hover {
     background-color: rgb(123, 179, 41);
   }
@@ -56,5 +61,12 @@
   background-color: pink;
   &:hover {
     background-color: rgb(247, 132, 151);
+  }
+}
+
+.button-add-campaign-color {
+  color: green;
+  &:hover {
+    color: rgb(4, 99, 4);
   }
 }
