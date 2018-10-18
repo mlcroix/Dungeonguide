@@ -1,12 +1,12 @@
 <div *ngIf="loaded">
     <div *ngFor="let Campaign of Campaigns">
-        <mat-card class="campaign-card" [routerLink]="['/campaign']" [queryParams]= "{campaign: Campaign}">
+        <mat-card class="campaign-card">
             <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
             <mat-card-content>
                 <p>{{ Campaign.name }}</p>
             </mat-card-content>
             <mat-card-actions>
-                <button class="button-select">
+                <button class="button-select" (click)="selectCampaign(Campaign)" [routerLink]="['/campaign', Campaign._id]">
                     <i class="material-icons">arrow_forward_ios</i>
                 </button>
                 <button class="button-favorite">

@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CampaignService } from './campaign.service';
 import { LocalStorageService } from '../app/app.localStorageService';
 import { Campaign } from '../models/campaign';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 @Component({
   selector: 'app-campaign-selector',
@@ -10,39 +13,44 @@ import { Campaign } from '../models/campaign';
 })
 
 export class CampaignComponent {
-  @Input() campaign: Campaign;
+
   localStorage: LocalStorageService;
   loggedIn = false;
-  SelectedCampaign: Campaign;
-  Campaigns = [];
+  loaded = false;
+  campaignContainsUser = false;
+  campaign: Campaign;
 
-  OnInit() {
-    //*this.SelectCampaign = this.campaign;
-    console.log(this.campaign);
- }
+  public constructor(private campaignService: CampaignService, private route: ActivatedRoute,
+    private router: Router) {
+      this.localStorage = new LocalStorageService();
+      const user = JSON.parse(this.localStorage.getItem('user'));
+      let campaignId = null;
 
+      this.route.paramMap.subscribe(params => {campaignId = params.get('id'); });
 
-  public constructor(private campaignService: CampaignService) {
-    this.localStorage = new LocalStorageService();
+      if (user) {
+        this.loggedIn = true;
 
+        if (this.campaignService.getStoredCampaign() != null) {
+          this.campaign = this.campaignService.getStoredCampaign();
 
+          if (this.campaign.Players.indexOf(user._id)) {
+            this.campaignContainsUser = true;
+          }
 
-    const user = JSON.parse(this.localStorage.getItem('user'));
-    if (user) {
-      this.loggedIn = true;
-      this.campaignService.getCampaigns(user._id).then((result) => {
-        this.Campaigns = result;
-      });
-    }
+          this.loaded = true;
+        } else {
+          this.campaignService.getCampaign(campaignId).then((result) => {
+            this.campaign = new Campaign(result[0]._id, result[0].name, result[0].dungeonMaster, result[0].players);
 
-    const campaign = JSON.parse(localStorage.getItem('campaign'));
-    if (campaign != null) {
-      this.SelectedCampaign = campaign;
-    }
-  }
+            if (this.campaign.Players.indexOf(user._id)) {
+              this.campaignContainsUser = true;
+            }
 
-  public SelectCampaign(campaign) {
-    this.SelectedCampaign = campaign;
-    this.localStorage.setItem('campaign', JSON.stringify(campaign));
+            this.loaded = true;
+          });
+
+        }
+      }
   }
 }

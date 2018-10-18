@@ -10,6 +10,7 @@ import { Campaign } from '../models/campaign';
 @Injectable()
 export class CampaignService {
   private url = 'https://dungeonguide.herokuapp.com/campaigns';
+  private campaign: Campaign;
 
   public constructor(private http: Http) {
   }
@@ -23,6 +24,15 @@ export class CampaignService {
     });
   }
 
+  public getCampaign(campaignId): Promise<Campaign> {
+    return this.http.get(this.url + '/id/' + campaignId)
+      .toPromise()
+      .then(response => response.json() as Campaign)
+      .catch(error => {
+    throw new Error(error.json().message);
+    });
+  }
+
   public createCampaign(playerId): Promise<Campaign> {
     return this.http.get(this.url + '/' + playerId + '/create')
       .toPromise()
@@ -30,5 +40,13 @@ export class CampaignService {
       .catch(error => {
         throw new Error(error.json().message);
       });
+  }
+
+  public storeCampaign(campaign: Campaign) {
+    this.campaign = campaign;
+  }
+
+  public getStoredCampaign() {
+    return this.campaign;
   }
 }

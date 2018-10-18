@@ -1,1 +1,7 @@
-<h3>{{ campaign.name }}</h3>
+<div *ngIf="loaded">
+    <h3>{{ campaign.name }}</h3>
+</div>
+
+<div *ngIf="!loaded">
+<mat-spinner [diameter]="150" class="load-spinner"></mat-spinner>
+</div>

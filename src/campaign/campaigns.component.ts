@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { CampaignService } from './campaign.service';
 import { LocalStorageService } from '../app/app.localStorageService';
+import { Campaign } from '../models/campaign';
 
 @Component({
   selector: 'app-campaigns-selector',
@@ -25,7 +26,11 @@ export class CampaignsComponent {
     if (user) {
       this.loggedIn = true;
       this.campaignService.getCampaigns(user._id).then((result) => {
-        this.Campaigns = result;
+
+        for (const r of result) {
+          this.Campaigns.push(new Campaign(r._id, r.name, r.dungeonMaster, r.players));
+        }
+
         this.loaded = true;
       });
     }
@@ -35,8 +40,11 @@ export class CampaignsComponent {
     this.campaignService.createCampaign(JSON.parse(this.localStorage.getItem('user'))._id).then((result) => {
       if (result) {
         this.Campaigns.push(result);
-        console.log(result);
       }
     });
+  }
+
+  public selectCampaign(campaign) {
+    this.campaignService.storeCampaign(campaign);
   }
 }
