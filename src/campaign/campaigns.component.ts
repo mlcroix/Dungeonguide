@@ -26,11 +26,8 @@ export class CampaignsComponent {
     if (user) {
       this.loggedIn = true;
       this.campaignService.getCampaigns(user._id).then((result) => {
-
-        for (const r of result) {
-          this.Campaigns.push(new Campaign(r._id, r.name, r.dungeonMaster, r.players));
-        }
-
+        this.Campaigns = result;
+        console.log(this.Campaigns[0].players);
         this.loaded = true;
       });
     }

@@ -34,16 +34,15 @@ export class CampaignComponent {
         if (this.campaignService.getStoredCampaign() != null) {
           this.campaign = this.campaignService.getStoredCampaign();
 
-          if (this.campaign.Players.indexOf(user._id)) {
+          if (this.campaign.players.indexOf(user._id)) {
             this.campaignContainsUser = true;
           }
 
           this.loaded = true;
         } else {
           this.campaignService.getCampaign(campaignId).then((result) => {
-            this.campaign = new Campaign(result[0]._id, result[0].name, result[0].dungeonMaster, result[0].players);
-
-            if (this.campaign.Players.indexOf(user._id)) {
+            this.campaign = result[0];
+            if (this.campaign.players.indexOf(user._id)) {
               this.campaignContainsUser = true;
             }
 

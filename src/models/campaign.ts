@@ -2,12 +2,12 @@ export class Campaign {
   public _id: string;
   public name: string;
   public dungeonMaster: string;
-  public Players: string[];
+  public players: string[];
 
   public constructor(id, name, dm, players) {
     this._id = id;
     this.name = name;
     this.dungeonMaster = dm;
-    this.Players = players;
+    this.players = players;
   }
 }
