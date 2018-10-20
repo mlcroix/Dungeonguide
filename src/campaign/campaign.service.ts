@@ -42,6 +42,18 @@ export class CampaignService {
       });
   }
 
+  public removeCampaign(userId, campaignId): Promise<any> {
+    const data = { 'campaignId': campaignId, 'userId': userId };
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url + '/remove', data, options).toPromise()
+    .then(response => response.json())
+    .catch(error => {
+      throw new Error(error);
+    });
+  }
+
   public storeCampaign(campaign: Campaign) {
     this.campaign = campaign;
   }

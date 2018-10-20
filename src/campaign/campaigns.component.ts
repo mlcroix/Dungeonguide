@@ -42,7 +42,12 @@ export class CampaignsComponent {
   }
 
   public removeCampaign(campaign) {
-
+    this.campaignService.removeCampaign(this.user._id, campaign._id).then((result) => {
+      if (result.deleted) {
+        const index = this.Campaigns.indexOf(campaign);
+        this.Campaigns.splice(index, 1);
+      }
+    });
   }
 
   public selectCampaign(campaign) {
