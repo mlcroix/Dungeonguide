@@ -1,0 +1,91 @@
+.campaign-container {
+  float: left;
+  height: 30px;
+  width: 230px;
+  margin-right: 100px;
+}
+
+.button-add-campaign {
+  right:    0;
+  bottom:   0;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  i {
+    font-size: 75px;
+  }
+}
+
+.campaign-card {
+  height: 250px;
+  width: 200px;
+  margin: 20px;
+  float: left;
+  border-radius: 5px;
+  overflow: hidden;
+  p {
+    margin: -10px;
+  }
+  button {
+    width: 70px;
+    margin-left: 5px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    float: left;
+  }
+}
+
+.new-campaign-card {
+  height: 250px;
+  width: 200px;
+  margin: 20px;
+  float: left;
+  border-radius: 5px;
+  overflow: hidden;
+  opacity: 0.5;
+  text-align: center;
+
+  p {
+    font-size: 32px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.load-spinner {
+  height: 400px;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 20%;
+}
+
+.button-select {
+  background-color: rgb(144, 236, 5);
+  &:hover {
+    background-color: rgb(123, 179, 41);
+  }
+}
+
+.button-delete {
+  background-color: rgba(255, 32, 32, 0.979);
+  &:hover {
+    background-color: rgba(151, 13, 13, 0.979);
+  }
+}
+
+.button-favorite {
+  background-color: pink;
+  &:hover {
+    background-color: rgb(247, 132, 151);
+  }
+}
+
+.button-add-campaign-color {
+  color: green;
+  &:hover {
+    color: rgb(4, 99, 4);
+  }
+}

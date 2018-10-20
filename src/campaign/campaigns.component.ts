@@ -4,19 +4,20 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CampaignService } from './campaign.service';
 import { LocalStorageService } from '../app/app.localStorageService';
 import { Campaign } from '../models/campaign';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-campaigns-selector',
   templateUrl: './campaigns.component.html',
-  styleUrls: ['./campaign.scss']
+  styleUrls: ['./campaigns.scss']
 })
 
 export class CampaignsComponent {
   localStorage: LocalStorageService;
   loggedIn = false;
   loaded = false;
-  SelectedCampaign = null;
   Campaigns = [];
+  user: User;
 
 
   constructor(private router: Router, private campaignService: CampaignService) {
@@ -24,16 +25,15 @@ export class CampaignsComponent {
 
     const user = JSON.parse(this.localStorage.getItem('user'));
     if (user) {
-      this.loggedIn = true;
       this.campaignService.getCampaigns(user._id).then((result) => {
         this.Campaigns = result;
-        console.log(this.Campaigns[0].players);
         this.loaded = true;
+        this.user = user;
       });
     }
   }
 
-  public CreateCampaign() {
+  public createCampaign() {
     this.campaignService.createCampaign(JSON.parse(this.localStorage.getItem('user'))._id).then((result) => {
       if (result) {
         this.Campaigns.push(result);
@@ -41,7 +41,18 @@ export class CampaignsComponent {
     });
   }
 
+  public removeCampaign(campaign) {
+
+  }
+
   public selectCampaign(campaign) {
     this.campaignService.storeCampaign(campaign);
+  }
+
+  public playeridDungeonMaster(campaign) {
+    if (campaign.dungeonMaster === this.user._id) {
+      return true;
+    }
+    return false;
   }
 }

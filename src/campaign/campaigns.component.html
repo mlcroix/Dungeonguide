@@ -12,16 +12,20 @@
                 <button class="button-favorite">
                     <i class="material-icons">favorite_border</i>
                 </button>
-                <button class="button-delete">
+                <button class="button-delete" *ngIf="playeridDungeonMaster(Campaign)">
                     <i class="material-icons">delete</i>
                 </button>
             </mat-card-actions>
           </mat-card>
-      </div>
+    </div>
 
-      <button class="button-add-campaign">
-        <i class="material-icons button-add-campaign-color">add_circle</i>
-    </button>
+    <mat-card class="new-campaign-card" (click)="CreateCampaign()">
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>New</p>
+      </mat-card-content>
+    </mat-card>
+
 </div>
 
 <div *ngIf="!loaded">
