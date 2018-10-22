@@ -7,13 +7,14 @@
       <button class="module-button" (click)="setState('world lore')">World Lore</button>
       <button class="module-button" routerLink='/campaigns'>Back</button>
   </div>
+  <div class="line"></div>
   <div class="campaign-module">
       <div *ngIf="loaded">
         <div *ngIf="state=='dashboard'">
           <h3>dashboard</h3>
         </div>
         <div *ngIf="state=='notes'">
-          <h3>notes</h3>
+          <app-notes-selector></app-notes-selector>
         </div>
         <div *ngIf="state=='session history'">
           <h3>session history</h3>
@@ -25,7 +26,6 @@
           <h3>world lore</h3>
         </div>
       </div>
-
       <div *ngIf="!loaded">
       <mat-spinner [diameter]="150" class="load-spinner"></mat-spinner>
       </div>

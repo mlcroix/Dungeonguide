@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../app/app.material.module';
 import { LocalStorageService } from '../app/app.localStorageService';
 
+import { NotesModule } from './Modules/notes/notes.module';
+
 
 @NgModule({
     declarations: [
@@ -17,6 +19,7 @@ import { LocalStorageService } from '../app/app.localStorageService';
         FormsModule,
         AppMaterialModule,
         RouterModule,
+        NotesModule,
     ],
     exports: [
         CampaignComponent,

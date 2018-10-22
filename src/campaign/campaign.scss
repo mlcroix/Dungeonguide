@@ -11,21 +11,29 @@
   background-color: rgb(97, 100, 100);
 }
 
+.line {
+  height: 100vh;
+  width: 3px;
+  float: left;
+  background-color: rgb(39, 39, 39);
+}
+
 .campaign-module {
   width:auto;
   height:100vh;
   overflow:hidden;
+  margin: 0px;
 }
 
 .module-button {
   width: 100%;
   height: 40px;
-  background-color: rgb(85, 84, 84);
+  background-color: rgb(54, 54, 54);
   color: ghostwhite;
   border: none;
 
   &:hover {
-    background-color: rgb(58, 58, 58)
+    background-color: rgb(44, 44, 44)
   }
 }
 

@@ -1,1 +1,22 @@
-<h3>sessions</h3>
+<div class="notesWrapper">
+    <div class="NotesMenu">
+        <div class="TabButtonContainer">
+            <button (click)="noteType = 'myNotes'">My notes</button>
+            <button (click)="noteType = 'sharedNotes'">Shared notes</button>
+        </div>
+        <div *ngIf="noteType=='myNotes'">
+          <div *ngFor="let mynote of myNotes">
+              <button>mynotes</button>
+          </div>
+        </div>
+        <div  *ngIf="noteType=='sharedNotes'">
+          <div *ngFor="let sharednote of sharedNotes">
+              <button>shared</button>
+          </div>
+        </div>
+    </div>
+    <div classs="NoteContainer">
+      <p>meep</p>
+    </div>
+</div>
+

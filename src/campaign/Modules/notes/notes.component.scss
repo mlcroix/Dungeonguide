@@ -1,0 +1,33 @@
+.notesWrapper {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.NotesMenu {
+  width: 200px;
+  height: 100vh;
+  float: left;
+  background-color: rgb(97, 100, 100);
+}
+
+.TabButtonContainer {
+  button {
+    width: 50%;
+    height: 40px;
+    background-color: rgb(85, 84, 84);
+    color: ghostwhite;
+    border: none;
+
+    &:hover {
+      background-color: rgb(58, 58, 58)
+    }
+  }
+}
+
+.NoteContainer {
+  height: 100vh;
+  float: left;
+  overflow: hidden;
+  background-color: rgb(192, 125, 24);
+}
