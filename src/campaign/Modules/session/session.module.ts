@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SessionComponent } from './session.component';
 
-import { AppMaterialModule } from '../app/app.material.module';
+import { AppMaterialModule } from '../../../app/app.material.module';
 
 import { SessionService } from './session.service';
 

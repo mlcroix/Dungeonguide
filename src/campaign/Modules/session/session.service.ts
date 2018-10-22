@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { SessionItem } from '../models/session-item';
+import { SessionItem } from '../../../models/session-item';
 import { Observable } from 'rxjs';
 
 @Injectable()

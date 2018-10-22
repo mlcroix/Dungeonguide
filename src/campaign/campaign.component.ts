@@ -19,6 +19,7 @@ export class CampaignComponent {
   loaded = false;
   campaignContainsUser = false;
   campaign: Campaign;
+  state = 'dashboard';
 
   public constructor(private campaignService: CampaignService, private route: ActivatedRoute,
     private router: Router) {
@@ -27,6 +28,12 @@ export class CampaignComponent {
       let campaignId = null;
 
       this.route.paramMap.subscribe(params => {campaignId = params.get('id'); });
+      this.route.paramMap.subscribe(params => {
+        const stateParameter = params.get('state');
+        if (stateParameter != null) {
+          this.state = stateParameter;
+        }
+      });
 
       if (user) {
         this.loggedIn = true;
@@ -51,5 +58,9 @@ export class CampaignComponent {
 
         }
       }
+  }
+
+  public setState(state) {
+    this.state = state;
   }
 }

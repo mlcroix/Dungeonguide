@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
-import { SessionItem } from '../models/session-item';
+import { SessionItem } from '../../../models/session-item';
 import { SessionService } from './session.service';
 import { Observable, Subscription } from 'rxjs';
-import { LocalStorageService } from '../app/app.localStorageService';
+import { LocalStorageService } from '../../../app/app.localStorageService';
 
 
 @Component({

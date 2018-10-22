@@ -1,14 +1,29 @@
 <div classs="campaignWrapper">
   <div class="campaign-menu">
-      <button class="module-button">Notes</button>
-      <button class="module-button">Session History</button>
-      <button class="module-button">Players</button>
-      <button class="module-button">World Lore</button>
+      <button class="module-button" (click)="setState('dashboard')">Dashboard</button>
+      <button class="module-button" (click)="setState('notes')">Notes</button>
+      <button class="module-button" (click)="setState('session history')">Session History</button>
+      <button class="module-button" (click)="setState('players')">Players</button>
+      <button class="module-button" (click)="setState('world lore')">World Lore</button>
       <button class="module-button" routerLink='/campaigns'>Back</button>
   </div>
   <div class="campaign-module">
       <div *ngIf="loaded">
-          <h3>{{ campaign.name }}</h3>
+        <div *ngIf="state=='dashboard'">
+          <h3>dashboard</h3>
+        </div>
+        <div *ngIf="state=='notes'">
+          <h3>notes</h3>
+        </div>
+        <div *ngIf="state=='session history'">
+          <h3>session history</h3>
+        </div>
+        <div *ngIf="state=='players'">
+          <h3>players</h3>
+        </div>
+        <div *ngIf="state=='world lore'">
+          <h3>world lore</h3>
+        </div>
       </div>
 
       <div *ngIf="!loaded">

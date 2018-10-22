@@ -9,7 +9,7 @@ import { AppMaterialModule } from './app.material.module';
 import { AuthModule } from '../auth/auth.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { CampaignModule } from '../campaign/campaign.module';
-import { SessionModule } from '../session/session.module';
+import { SessionModule } from '../campaign/modules/session/session.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
