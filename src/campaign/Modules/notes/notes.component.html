@@ -6,7 +6,7 @@
         </div>
         <div *ngIf="noteType=='myNotes'">
           <div *ngFor="let mynote of myNotes">
-              <button>mynotes</button>
+              <button (click)='giveNotes()'>mynotes</button>
           </div>
         </div>
         <div  *ngIf="noteType=='sharedNotes'">

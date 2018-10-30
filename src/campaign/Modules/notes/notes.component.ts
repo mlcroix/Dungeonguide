@@ -13,20 +13,30 @@ import { Note } from '../../../models/note';
 
 export class NotesComponent {
   localStorage: LocalStorageService;
+  notesService: NotesService;
   loaded = false;
   SelectedItem = null;
   noteType = 'myNotes';
   myNotes: Note[];
-  sharedNotes: Note[];
+  myNotesSubscription: Subscription;
+  //sharedNotes: Note[];
 
 
-  constructor() {
+  constructor(private service: NotesService) {
     this.localStorage = new LocalStorageService();
+    this.notesService = service;
 
     const user = JSON.parse(this.localStorage.getItem('user'));
     if (user) {
+        //this.myNotesSubscription = this.notesService.myNotes.subscribe(notes => this.myNotes = notes);
+        this.myNotesSubscription = this.notesService.myNotes.subscribe(notes => this.myNotes = notes);
+
         this.loaded = true;
-        console.log(this.loaded);
       }
+  }
+
+  public giveNotes() {
+    console.log(this.myNotes);
+    console.log(this.myNotesSubscription);
   }
 }
