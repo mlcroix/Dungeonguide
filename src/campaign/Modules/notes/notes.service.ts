@@ -5,31 +5,28 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, Subscription, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SocketIoModule, SocketIoConfig, Socket} from 'ng6-socket-io';
+import * as io from 'socket.io-client';
+import { Note } from '../../../models/note';
 
 
 @Injectable()
 export class NotesService {
-  private url = 'https://dungeonguide.herokuapp.com/notes/';
+  private url = 'https://dungeonguidev2.herokuapp.com/notes/';
+  private WSurl = 'http://127.0.0.1:3000';
   private myNotesSubscription: Subscription;
   private sharedNotesSubscription: Subscription;
   private connection;
 
-  public constructor(private http: Http, private socket: Socket) {
+  public constructor(private http: Http) {
   }
 
-  /*
-  public get myNotes() {
-    const observer = this.http.get(this.url).pipe(map((res: any) => res.json()));
-    return observer;
-  }
-  */
-
-    public get myNotes(): Observable<any> {
+    public get myNotes() {
       const observable = new Observable(observer => {
-        this.connection = io(this.url);
-        this.connection.on('start', (data) => {
-          observer.next(data); });
+        this.connection = io(this.WSurl + '/notes');
+        this.connection.on('myNotes', (data) => {
+          console.log('Received message from Websocket Server ' + data);
+          observer.next(data);
+        });
         return () => {
             this.connection.disconnect();
         };
@@ -37,9 +34,23 @@ export class NotesService {
       return observable;
     }
 
-    getNotes() {
-      return this.socket
-          .fromEvent<any>("message")
-          .map(data => data.msg );
-  }
+    public createNote(campaignId, playerId): Promise<Note> {
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      const options = new RequestOptions({ headers: headers });
+      const dataObject = {
+        campaignId: campaignId,
+        playerId: playerId
+      };
+      const data = JSON.stringify(dataObject);
+
+      return this.http.post(this.WSurl + '/notes/create', data, options).toPromise()
+        .then(response => response.json() as Note)
+        .catch(error => {
+        throw new Error(error);
+      });
+    }
+
+    public getNotes(campaignId, playerId) {
+      this.connection.emit('get-notes', campaignId, playerId);
+    }
 }

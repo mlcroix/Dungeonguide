@@ -52,6 +52,7 @@ export class CampaignsComponent {
 
   public selectCampaign(campaign) {
     this.campaignService.storeCampaign(campaign);
+    this.localStorage.setItem('campaignId', campaign._id);
   }
 
   public playeridDungeonMaster(campaign) {

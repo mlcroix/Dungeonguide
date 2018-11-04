@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, OnDestroy, Input } from '@angular/core';
 import { NotesService } from './notes.service';
 import { Observable, Subscription } from 'rxjs';
 import { LocalStorageService } from '../../../app/app.localStorageService';
+import { CampaignService } from '../../campaign.service';
 import { Note } from '../../../models/note';
+import { User } from '../../../models/user';
 
 
 @Component({
@@ -15,28 +17,50 @@ export class NotesComponent {
   localStorage: LocalStorageService;
   notesService: NotesService;
   loaded = false;
-  SelectedItem = null;
+  SelectedItem: Note;
   noteType = 'myNotes';
+  user: User;
+  campaignId: string;
   myNotes: Note[];
+  sharedNotes: Note[];
+
   myNotesSubscription: Subscription;
-  //sharedNotes: Note[];
 
 
   constructor(private service: NotesService) {
     this.localStorage = new LocalStorageService();
     this.notesService = service;
 
-    const user = JSON.parse(this.localStorage.getItem('user'));
-    if (user) {
-        //this.myNotesSubscription = this.notesService.myNotes.subscribe(notes => this.myNotes = notes);
-        this.myNotesSubscription = this.notesService.myNotes.subscribe(notes => this.myNotes = notes);
+    this.user = <User>JSON.parse(this.localStorage.getItem('user'));
+    console.log(this.user._id);
+    this.campaignId = this.localStorage.getItem('campaignId');
+    console.log('campaignId: ' + this.campaignId);
 
+    if (this.user) {
+        this.myNotesSubscription = this.notesService.myNotes.subscribe(myNotes => this.myNotes = myNotes);
+        //this.myNotesSubscription = this.notesService.myNotes.subscribe(message => console.log(message));
+        this.notesService.getNotes(this.campaignId, this.user._id);
         this.loaded = true;
       }
   }
 
-  public giveNotes() {
+  public ngOnDestroy(): void {
+    this.myNotesSubscription.unsubscribe();
+  }
+
+  public getNotes() {
     console.log(this.myNotes);
-    console.log(this.myNotesSubscription);
+    this.notesService.getNotes(this.campaignId, this.user._id);
+  }
+
+  public selectNote(note) {
+    this.SelectedItem = note;
+  }
+
+  public newNote() {
+    this.notesService.createNote(this.campaignId, this.user._id).then((result) => {
+      this.myNotes.push(result);
+      this.SelectedItem = result;
+    });
   }
 }
