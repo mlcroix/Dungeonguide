@@ -21,8 +21,8 @@ export class NotesComponent {
   noteType = 'myNotes';
   user: User;
   campaignId: string;
-  myNotes: Note[];
-  sharedNotes: Note[];
+  myNotes;
+  sharedNotes;
 
   myNotesSubscription: Subscription;
 
@@ -38,7 +38,6 @@ export class NotesComponent {
 
     if (this.user) {
         this.myNotesSubscription = this.notesService.myNotes.subscribe(myNotes => this.myNotes = myNotes);
-        //this.myNotesSubscription = this.notesService.myNotes.subscribe(message => console.log(message));
         this.notesService.getNotes(this.campaignId, this.user._id);
         this.loaded = true;
       }
