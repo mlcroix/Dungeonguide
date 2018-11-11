@@ -23,8 +23,24 @@
     <div classs="NoteContainer">
         <mat-card class="note-card" *ngIf="SelectedItem && loaded">
             <mat-card-header class='note-card-header'>
-                <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
-                <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
+              <div class="header-container">
+                  <div class="float_left">
+                      <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
+                      <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
+                  </div>
+                  <div class="float_right">
+                    <button class="card-button">
+                        <i class="material-icons">
+                            edit
+                            </i>
+                    </button>
+                    <button class="card-button">
+                        <i class="material-icons">
+                            delete
+                            </i>
+                    </button>
+                  </div>
+              </div>
             </mat-card-header>
             <mat-card-content>
                 <p>
