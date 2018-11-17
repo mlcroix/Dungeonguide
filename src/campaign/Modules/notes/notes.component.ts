@@ -62,4 +62,27 @@ export class NotesComponent {
       this.SelectedItem = result;
     });
   }
+
+  public deleteNote() {
+    this.notesService.removeNote(this.SelectedItem).then((result) => {
+      console.log(result);
+      if (result.deleted) {
+        this.removeItemFromArray(this.SelectedItem, this.myNotes);
+        if (this.myNotes.length > 0) {
+          this.SelectedItem = this.myNotes[0];
+        } else {
+          this.SelectedItem = null;
+        }
+      }
+    });
+  }
+
+  private removeItemFromArray(item, array) {
+    for (let i = 0; i < array.length; i++) {
+      if (item === array[i]) {
+        array.splice(i, 1);
+        return i;
+      }
+    }
+  }
 }
