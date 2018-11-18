@@ -1,0 +1,15 @@
+<div class="edit-container">
+    <div>
+        <p>Title</p>
+        <input type="text" name="noteName" value="{{ data.title }}">
+    </div>
+
+    <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+        <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
+      </div>
+</div>
+
+
