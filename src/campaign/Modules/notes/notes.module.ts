@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxEditorModule } from 'ngx-editor';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { NotesComponent, NotesDialogComponent } from './notes.component';
+import { NotesComponent } from './notes.component';
 import { AppMaterialModule } from '../../../app/app.material.module';
 import { FormsModule } from '@angular/forms';
 import { NotesService } from './notes.service';
@@ -13,7 +13,6 @@ import { NotesService } from './notes.service';
 @NgModule({
     declarations: [
         NotesComponent,
-        NotesDialogComponent,
     ],
     imports: [
         HttpModule,
@@ -26,14 +25,12 @@ import { NotesService } from './notes.service';
     ],
     exports: [
         NotesComponent,
-        NotesDialogComponent,
     ],
     providers: [
       NotesService,
     ],
     entryComponents: [
       NotesComponent,
-      NotesDialogComponent
     ]
 
 })

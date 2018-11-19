@@ -8,12 +8,6 @@ import { CampaignService } from '../../campaign.service';
 import { Note } from '../../../models/note';
 import { User } from '../../../models/user';
 
-
-export interface DialogData {
-  title: string;
-  text: string;
-}
-
 @Component({
     selector: 'app-notes-selector',
     templateUrl: './notes.component.html',
@@ -24,6 +18,7 @@ export class NotesComponent {
   localStorage: LocalStorageService;
   notesService: NotesService;
   loaded = false;
+  EditMode = false;
   SelectedItem: Note;
   noteType = 'myNotes';
   user: User;
@@ -34,8 +29,28 @@ export class NotesComponent {
   editedText: string;
   myNotesSubscription: Subscription;
 
+  editorConfig = {
+    "editable": true,
+    "spellcheck": true,
+    "height": "auto",
+    "minHeight": "400px",
+    "width": "auto",
+    "minWidth": "auto",
+    "translate": "yes",
+    "enableToolbar": true,
+    "showToolbar": true,
+    "toolbar": [
+        ["bold", "italic", "underline", "strikeThrough", "superscript", "subscript"],
+        ["fontName", "fontSize", "color"],
+        ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "indent", "outdent"],
+        ["cut", "copy", "delete", "removeFormat", "undo", "redo"],
+        ["paragraph", "blockquote", "removeBlockquote", "horizontalLine", "orderedList", "unorderedList"],
+        ["link", "unlink"]
+    ]
+  };
 
-  constructor(private service: NotesService, public dialog: MatDialog) {
+
+  constructor(private service: NotesService) {
     this.localStorage = new LocalStorageService();
     this.notesService = service;
 
@@ -59,6 +74,8 @@ export class NotesComponent {
 
   public selectNote(note) {
     this.SelectedItem = note;
+    this.editedText = note.text;
+    this.editedTitle = note.name;
   }
 
   public newNote() {
@@ -90,54 +107,8 @@ export class NotesComponent {
     }
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(NotesDialogComponent, {
-      data: {title: this.SelectedItem.name, text: this.SelectedItem.text}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      //this.animal = result;
-    });
+  public saveNote() {
+    this.SelectedItem.text = this.editedText;
+    this.SelectedItem.name = this.editedTitle;
   }
-}
-
-@Component({
-  selector: 'app-dialog-selector',
-  templateUrl: 'notes.dialog.component.html',
-  styleUrls: ['./notes.component.scss']
-})
-export class NotesDialogComponent {
-  editorConfig = {
-    "editable": true,
-    "spellcheck": true,
-    "height": "400px",
-    "minHeight": "400px",
-    "width": "auto",
-    "minWidth": "0",
-    "translate": "yes",
-    "enableToolbar": true,
-    "showToolbar": true,
-    "placeholder": "Enter text here...",
-    "imageEndPoint": "",
-    "toolbar": [
-        ["bold", "italic", "underline", "strikeThrough", "superscript", "subscript"],
-        ["fontName", "fontSize", "color"],
-        ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "indent", "outdent"],
-        ["cut", "copy", "delete", "removeFormat", "undo", "redo"],
-        ["paragraph", "blockquote", "removeBlockquote", "horizontalLine", "orderedList", "unorderedList"],
-        ["link", "unlink", "image", "video"]
-    ]
-  };
-
-  constructor(
-    public dialogRef: MatDialogRef<NotesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-      console.log(data);
-    }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }
