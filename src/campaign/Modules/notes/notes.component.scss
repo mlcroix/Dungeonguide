@@ -88,7 +88,7 @@
   }
 
   .float_left {
-    width: 100px;
+    width: 500px;
     float: left;
   }
 
@@ -97,4 +97,20 @@
     float: right;
     margin-right: 15px;
   }
+
+  .noteText {
+    padding: 10px;
+  }
+
+  .noteName-input {
+    width: 450px;
+  }
+
+  .noteName {
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
 }
+
+

@@ -6,11 +6,11 @@
         </div>
         <div *ngIf="noteType=='myNotes'">
           <div *ngFor="let mynote of myNotes">
-            <div class="note-button" (click)='selectNote(mynote); editMode = false'>
-              <p> {{ mynote.name }}</p>
+            <div class="note-button noteName" (click)='selectNote(mynote); editMode = false'>
+              <p>{{ mynote.name }}</p>
           </div>
           </div>
-          <div class="note-button" (click)='newNote(); editMode = true'>
+          <div class="note-button" (click)='newNote()'>
               <p>new note</p>
           </div>
         </div>
@@ -26,7 +26,7 @@
               <mat-card-header class='note-card-header'>
                   <div class="header-container">
                       <div class="float_left">
-                          <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
+                          <mat-card-title class="noteName">{{ SelectedItem.name }}</mat-card-title>
                           <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
                       </div>
                       <div class="float_right">
@@ -44,15 +44,15 @@
                   </div>
                 </mat-card-header>
                 <mat-card-content>
-                    <div [innerHTML]="SelectedItem.text"></div>
+                    <div class="noteText" [innerHTML]="SelectedItem.text"></div>
                 </mat-card-content>
           </div>
           <div *ngIf="editMode">
               <mat-card-header class='note-card-header'>
                   <div class="header-container">
                       <div class="float_left">
-                          <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
-                          <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
+                          <label for="name">Note name: </label>
+                          <input class="noteName-input" type="text" name="name" [(ngModel)]="editedName"/>
                       </div>
                       <div class="float_right">
                         <button class="card-button" (click)='editMode = false'>

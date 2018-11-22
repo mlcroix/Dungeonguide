@@ -25,7 +25,7 @@ export class NotesComponent {
   campaignId: string;
   myNotes;
   sharedNotes;
-  editedTitle: string;
+  editedName: string;
   editedText: string;
   myNotesSubscription: Subscription;
 
@@ -75,7 +75,7 @@ export class NotesComponent {
   public selectNote(note) {
     this.SelectedItem = note;
     this.editedText = note.text;
-    this.editedTitle = note.name;
+    this.editedName = note.name;
   }
 
   public newNote() {
@@ -108,7 +108,11 @@ export class NotesComponent {
   }
 
   public saveNote() {
+    console.log(this.SelectedItem);
     this.SelectedItem.text = this.editedText;
-    this.SelectedItem.name = this.editedTitle;
+    this.SelectedItem.name = this.editedName;
+
+    this.notesService.updateNote(this.SelectedItem).then((result) => {
+    });
   }
 }
