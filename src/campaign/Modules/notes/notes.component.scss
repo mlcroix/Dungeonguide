@@ -8,28 +8,29 @@
   width: 200px;
   height: 100vh;
   float: left;
-  background-color: rgb(97, 100, 100);
+  background-color: rgb(70, 70, 70);
 }
 
-.TabButtonContainer {
-  button {
-    width: 50%;
-    height: 40px;
-    background-color: rgb(85, 84, 84);
-    color: ghostwhite;
-    border: none;
+.tab-button {
+  width: 50%;
+  height: 40px;
+  background-color: rgb(85, 84, 84);
+  color: ghostwhite;
+  border: none;
 
-    &:hover {
-      background-color: rgb(58, 58, 58)
-    }
+  &:hover {
+    background-color: rgb(58, 58, 58)
   }
+}
+
+.active-tab-button {
+  background-color: rgb(110, 110, 110);
 }
 
 .NoteContainer {
   height: 100vh;
   float: left;
   overflow: hidden;
-  background-color: rgb(192, 125, 24);
 }
 
 .note-button {
@@ -38,11 +39,16 @@
   display:inline-block;
   text-align: center;
   line-height: 0;
-  background-color: rgb(144, 148, 148);
+  background-color: rgb(58, 58, 58);
+  color: white;
 
   &:hover {
     background-color: rgb(88, 88, 88)
   }
+}
+
+.active-note-button {
+  background-color: rgb(100, 100, 100);
 }
 
 .note-card {
@@ -68,6 +74,8 @@
 
   mat-card-content {
       height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden;
   }
 
   .header-container {
@@ -113,4 +121,23 @@
   }
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(48, 48, 48);
+}
 

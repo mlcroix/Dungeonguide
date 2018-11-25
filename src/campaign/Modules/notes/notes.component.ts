@@ -32,7 +32,7 @@ export class NotesComponent {
   editorConfig = {
     "editable": true,
     "spellcheck": true,
-    "height": "auto",
+    "height": "400px",
     "minHeight": "400px",
     "width": "auto",
     "minWidth": "auto",
@@ -114,5 +114,13 @@ export class NotesComponent {
 
     this.notesService.updateNote(this.SelectedItem).then((result) => {
     });
+  }
+
+  public isSelected(note) {
+    if (note === this.SelectedItem) {
+      return true;
+    }
+
+    return false;
   }
 }

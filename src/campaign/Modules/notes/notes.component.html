@@ -1,13 +1,13 @@
 <div class="notesWrapper">
     <div class="NotesMenu">
         <div class="TabButtonContainer">
-            <button (click)="noteType = 'myNotes'">My notes</button>
-            <button (click)="noteType = 'sharedNotes'">Shared notes</button>
+            <button (click)="noteType = 'myNotes'" class="tab-button" [class.active-tab-button]="noteType == 'myNotes'">My notes</button>
+            <button (click)="noteType = 'sharedNotes'" class="tab-button" [class.active-tab-button]="noteType == 'sharedNotes'">Shared notes</button>
         </div>
         <div *ngIf="noteType=='myNotes'">
-          <div *ngFor="let mynote of myNotes">
-            <div class="note-button noteName" (click)='selectNote(mynote); editMode = false'>
-              <p>{{ mynote.name }}</p>
+          <div *ngFor="let note of myNotes">
+            <div class="note-button noteName" (click)='selectNote(note); editMode = false'  [class.active-note-button]="isSelected(note)">
+              <p>{{ note.name }}</p>
           </div>
           </div>
           <div class="note-button" (click)='newNote()'>
