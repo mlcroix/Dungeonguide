@@ -6,7 +6,7 @@
         </div>
         <div *ngIf="noteType=='myNotes'">
           <div *ngFor="let note of myNotes">
-            <div class="note-button noteName" (click)='selectNote(note); editMode = false'  [class.active-note-button]="isSelected(note)">
+            <div class="note-button" (click)='selectNote(note); editMode = false'  [class.active-note-button]="isSelected(note)">
               <p>{{ note.name }}</p>
           </div>
           </div>
