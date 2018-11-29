@@ -12,7 +12,9 @@ import { Note } from '../../../models/note';
 @Injectable()
 export class NotesService {
   private url = 'https://dungeonguidev2.herokuapp.com/notes/';
-  private WSurl = 'http://127.0.0.1:3000';
+  //private url = 'http://127.0.0.1:3000/notes/';
+  private WSurl = 'https://dungeonguidev2.herokuapp.com';
+  //private WSurl = 'http://127.0.0.1:3000';
   private myNotesSubscription: Subscription;
   private sharedNotesSubscription: Subscription;
   private connection;
@@ -34,6 +36,16 @@ export class NotesService {
       return observable;
     }
 
+    public removeNote(item) {
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      const options = new RequestOptions({ headers: headers });
+      return this.http.post(this.url + 'remove', item, options).toPromise()
+      .then(response => response.json())
+      .catch(error => {
+        throw new Error(error.json().message);
+      });
+    }
+
     public createNote(campaignId, playerId): Promise<Note> {
       const headers = new Headers({ 'Content-Type': 'application/json' });
       const options = new RequestOptions({ headers: headers });
@@ -43,8 +55,20 @@ export class NotesService {
       };
       const data = JSON.stringify(dataObject);
 
-      return this.http.post(this.WSurl + '/notes/create', data, options).toPromise()
+      return this.http.post(this.url + 'create', data, options).toPromise()
         .then(response => response.json() as Note)
+        .catch(error => {
+        throw new Error(error);
+      });
+    }
+
+    public updateNote(note) {
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      const options = new RequestOptions({ headers: headers });
+      const data = JSON.stringify(note);
+
+      return this.http.post(this.url + 'update', data, options).toPromise()
+        .then(response => response.json())
         .catch(error => {
         throw new Error(error);
       });

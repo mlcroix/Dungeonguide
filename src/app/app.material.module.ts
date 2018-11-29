@@ -8,6 +8,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import 'hammerjs';
 
 @NgModule({
@@ -22,6 +24,8 @@ import 'hammerjs';
     MatGridListModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
+    AngularFontAwesomeModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -34,6 +38,7 @@ import 'hammerjs';
     MatGridListModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
   ],
 })
 export class AppMaterialModule { }

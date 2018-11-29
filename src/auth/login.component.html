@@ -1,5 +1,8 @@
 <div *ngIf="loggedIn">
-    <button mat-button (click)="logout()">Sign out</button>
+    <button mat-button (click)="logout()">
+        <i class="fas fa-sign-out-alt awesome-icons-22"></i>
+        Sign out
+    </button>
 </div>
 <div class='login-window' *ngIf="!loggedIn">
   <form #f="ngForm" (ngSubmit)="login(f.value)">
@@ -13,8 +16,14 @@
       <input type="password" name="password" ngModel required #first="ngModel">
     </div>
 
-    <button mat-button type="submit" class="button">Login</button>
-    <button mat-button routerLink='/signup' class="button">Sign up</button>
+    <button mat-button type="submit" class="button">
+        <i class="fas fa-sign-in-alt awesome-icons-22"></i>
+        Login
+    </button>
+    <button mat-button routerLink='/signup' class="button">
+      <i class="material-icons">assignment</i>
+      Sign up
+    </button>
   </form>
 
 

@@ -1,13 +1,13 @@
 <div class="notesWrapper">
     <div class="NotesMenu">
         <div class="TabButtonContainer">
-            <button (click)="noteType = 'myNotes'">My notes</button>
-            <button (click)="noteType = 'sharedNotes'">Shared notes</button>
+            <button (click)="noteType = 'myNotes'" class="tab-button" [class.active-tab-button]="noteType == 'myNotes'">My notes</button>
+            <button (click)="noteType = 'sharedNotes'" class="tab-button" [class.active-tab-button]="noteType == 'sharedNotes'">Shared notes</button>
         </div>
         <div *ngIf="noteType=='myNotes'">
-          <div *ngFor="let mynote of myNotes">
-            <div class="note-button" (click)='selectNote(mynote)'>
-              <p> {{ mynote.name }}</p>
+          <div *ngFor="let note of myNotes">
+            <div class="note-button" (click)='selectNote(note); editMode = false'  [class.active-note-button]="isSelected(note)">
+              <p>{{ note.name }}</p>
           </div>
           </div>
           <div class="note-button" (click)='newNote()'>
@@ -22,15 +22,56 @@
     </div>
     <div classs="NoteContainer">
         <mat-card class="note-card" *ngIf="SelectedItem && loaded">
-            <mat-card-header class='note-card-header'>
-                <mat-card-title>{{ SelectedItem.name }}</mat-card-title>
-                <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                {{ SelectedItem.text }}
-                </p>
-            </mat-card-content>
+          <div *ngIf="!editMode">
+              <mat-card-header class='note-card-header'>
+                  <div class="header-container">
+                      <div class="float_left">
+                          <mat-card-title class="noteName">{{ SelectedItem.name }}</mat-card-title>
+                          <mat-card-subtitle>{{ SelectedItem.date }}</mat-card-subtitle>
+                      </div>
+                      <div class="float_right">
+                        <button class="card-button" (click)='editMode = true'>
+                            <i class="material-icons">
+                                edit
+                                </i>
+                        </button>
+                        <button class="card-button" (click)='deleteNote()'>
+                            <i class="material-icons">
+                                delete
+                                </i>
+                        </button>
+                      </div>
+                  </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="noteText" [innerHTML]="SelectedItem.text"></div>
+                </mat-card-content>
+          </div>
+          <div *ngIf="editMode">
+              <mat-card-header class='note-card-header'>
+                  <div class="header-container">
+                      <div class="float_left">
+                          <label for="name">Note name: </label>
+                          <input class="noteName-input" type="text" name="name" [(ngModel)]="editedName"/>
+                      </div>
+                      <div class="float_right">
+                        <button class="card-button" (click)='editMode = false'>
+                            <i class="material-icons">
+                                clear
+                                </i>
+                        </button>
+                        <button class="card-button" (click)='saveNote(); editMode = false'>
+                            <i class="material-icons">
+                                save
+                                </i>
+                        </button>
+                      </div>
+                  </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <app-ngx-editor [config]="editorConfig" [resizer]="false" [spellcheck]="true" [(ngModel)]="editedText"></app-ngx-editor>
+                </mat-card-content>
+          </div>
         </mat-card>
     </div>
 </div>

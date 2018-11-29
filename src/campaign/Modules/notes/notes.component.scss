@@ -8,37 +8,50 @@
   width: 200px;
   height: 100vh;
   float: left;
-  background-color: rgb(97, 100, 100);
+  background-color: rgb(70, 70, 70);
 }
 
-.TabButtonContainer {
-  button {
-    width: 50%;
-    height: 40px;
-    background-color: rgb(85, 84, 84);
-    color: ghostwhite;
-    border: none;
+.tab-button {
+  width: 50%;
+  height: 40px;
+  background-color: rgb(85, 84, 84);
+  color: ghostwhite;
+  border: none;
 
-    &:hover {
-      background-color: rgb(58, 58, 58)
-    }
+  &:hover {
+    background-color: rgb(58, 58, 58)
   }
+}
+
+.active-tab-button {
+  background-color: rgb(110, 110, 110);
 }
 
 .NoteContainer {
   height: 100vh;
   float: left;
   overflow: hidden;
-  background-color: rgb(192, 125, 24);
 }
 
 .note-button {
   height: 30px;
-  width: 100%;
-  display:inline-block;
+  width: 200px;
+  background-color: rgb(58, 58, 58);
+  color: white;
   text-align: center;
   line-height: 0;
-  background-color: rgb(144, 148, 148);
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &:hover {
+    background-color: rgb(88, 88, 88)
+  }
+}
+
+.active-note-button {
+  background-color: rgb(100, 100, 100);
 }
 
 .note-card {
@@ -48,6 +61,7 @@
   padding: 0px;
   overflow: hidden;
   margin-top: 10px;
+  border-radius: 10px;
 
   mat-card-header {
       width: 100%;
@@ -63,6 +77,70 @@
 
   mat-card-content {
       height: 500px;
-      padding: 20px;
+      overflow-y: auto;
+      overflow-x: hidden;
+  }
+
+  .header-container {
+    width: 700px;
+    height: 100%;
+  }
+
+  .card-button {
+    background-color: transparent;
+    color: snow;
+    border: none;
+    height: 40px;
+    width: 40px;
+
+    &:hover {
+      background-color: rgb(39, 39, 39)
+    }
+  }
+
+  .float_left {
+    width: 500px;
+    float: left;
+  }
+
+  .float_right {
+    width: 100px;
+    float: right;
+    margin-right: 15px;
+  }
+
+  .noteText {
+    padding: 10px;
+  }
+
+  .noteName-input {
+    width: 450px;
+  }
+
+  .noteName {
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
   }
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(48, 48, 48);
+}
+

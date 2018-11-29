@@ -1,10 +1,18 @@
 <div class="app-content">
   <mat-toolbar *ngIf='!isLoginRoute'>
-      <button mat-button routerLink='/dashboard'>{{title}}</button>
-      <button mat-button routerLink='/campaigns'>campaigns</button>
-      <span class="example-fill-remaining-space"></span>
+      <button mat-button routerLink='/'>{{title}}</button>
+      <button mat-button routerLink='/campaigns'>
+        <i class="material-icons">
+          chrome_reader_mode
+        </i> campaigns
+      </button>
+      <span class="fill-remaining-space"></span>
       <div *ngIf="loggedIn">
-          <button mat-button routerLink='/profile'>Profile</button>
+          <button mat-button routerLink='/profile'>
+            <i class="material-icons">
+              account_circle
+            </i> Profile
+          </button>
       </div>
       <app-login-selector></app-login-selector>
   </mat-toolbar>

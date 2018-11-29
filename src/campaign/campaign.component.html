@@ -1,11 +1,20 @@
 <div classs="campaignWrapper">
   <div class="campaign-menu">
-      <button class="module-button" (click)="setState('dashboard')">Dashboard</button>
-      <button class="module-button" (click)="setState('notes')">Notes</button>
-      <button class="module-button" (click)="setState('session history')">Session History</button>
-      <button class="module-button" (click)="setState('players')">Players</button>
-      <button class="module-button" (click)="setState('world lore')">World Lore</button>
-      <button class="module-button" routerLink='/campaigns'>Back</button>
+      <button class="module-button" (click)="setState('dashboard')" [class.isActive]="state === 'dashboard'">
+          <i class="fas fa-home awesome-icons-22" title="dashboard"></i>
+      </button>
+      <button class="module-button" (click)="setState('notes')" [class.isActive]="state === 'notes'">
+          <i class="fas fa-sticky-note awesome-icons-22" title="notes"></i>
+      </button>
+      <button class="module-button" (click)="setState('session history')" [class.isActive]="state === 'session history'">
+          <i class="fas fa-book-open awesome-icons-22" title="session history"></i>
+      </button>
+      <button class="module-button" (click)="setState('players')" [class.isActive]="state === 'players'">
+          <i class="fas fa-users awesome-icons-22" title="players"></i>
+      </button>
+      <button class="module-button" (click)="setState('world lore')" [class.isActive]="state === 'world lore'">
+          <i class="fas fa-globe-asia awesome-icons-22" title="world lore"></i>
+      </button>
   </div>
   <div class="line"></div>
   <div class="campaign-module">
