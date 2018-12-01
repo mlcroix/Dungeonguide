@@ -1,1 +1,39 @@
-<p>sign up</p>
+<div class="signup-window">
+  <h2>Sign up</h2>
+    <form #signup="ngForm" (ngSubmit)="login(signup.value)" class="suForm">
+        <div class="form-group suForm-group">
+            <label for="firstname">Firstname</label>
+            <input name="firstname" ngModel required #first="ngModel">
+        </div>
+
+        <div class="form-group suForm-group">
+          <label for="surname">Surname</label>
+          <input name="surname" ngModel required #first="ngModel">
+      </div>
+
+        <div class="form-group suForm-group">
+            <label for="email">Email</label>
+            <input name="email" ngModel required #first="ngModel">
+        </div>
+
+        <div class="form-group suForm-group">
+          <label for="username">Username</label>
+          <input name="username" ngModel required #first="ngModel">
+        </div>
+
+        <div class="form-group suForm-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" ngModel required #first="ngModel">
+        </div>
+
+        <div class="form-group suForm-group">
+            <label for="password2">Password</label>
+            <input type="password" name="password2" ngModel required #first="ngModel">
+          </div>
+
+        <button mat-button type="submit" class="button signup-button float-right">
+            <i class="fas fa-sign-in-alt awesome-icons-22"></i>
+            Sign up
+        </button>
+      </form>
+</div>

@@ -23,6 +23,10 @@ import { LocalStorageService } from '../app/app.localStorageService';
     providers: [
         AuthService,
         LocalStorageService,
+    ],
+    entryComponents: [
+      LoginComponent,
+      SignUpComponent
     ]
 })
 export class AuthModule { }

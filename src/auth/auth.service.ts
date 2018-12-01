@@ -10,6 +10,7 @@ import { User } from '../models/user';
 @Injectable()
 export class AuthService {
     private url = 'https://dungeonguide.herokuapp.com/players/';
+    //private url = 'http://localhost:3000/players/';
 
   public constructor(private http: Http) { }
 
@@ -18,6 +19,17 @@ export class AuthService {
     const options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.url + 'login', data, options).toPromise()
+    .then(response => response.json() as User)
+    .catch(error => {
+      throw new Error(error.json().message);
+    });
+  }
+
+  public SignUp(data): Promise<User> {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url + 'signup', data, options).toPromise()
     .then(response => response.json() as User)
     .catch(error => {
       throw new Error(error.json().message);

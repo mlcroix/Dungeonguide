@@ -1,11 +1,9 @@
-.login-window {
-  float: right;
-  width: auto;
+.form-group {
+  margin-left: 15px;
 }
 
-.form-group {
-  float: left;
-  margin-left: 15px;
+.suForm-group {
+  margin: 20px;
 }
 
 label {
@@ -17,3 +15,20 @@ label {
   margin-left: 5px;
 }
 
+.signup-window {
+  height: 300px;
+  width: 250px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.suForm {
+  width: 200px;
+  margin: auto;
+}
+
+.signup-button {
+  bottom: 0;
+}
