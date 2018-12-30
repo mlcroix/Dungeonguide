@@ -5,6 +5,8 @@ import { CampaignService } from './campaign.service';
 import { LocalStorageService } from '../app/app.localStorageService';
 import { Campaign } from '../models/campaign';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { OptionsComponent } from './Modules/options/options.component';
 
 @Component({
   selector: 'app-campaign-selector',
@@ -17,12 +19,13 @@ export class CampaignComponent {
   localStorage: LocalStorageService;
   loggedIn = false;
   loaded = false;
+  DM = false;
   campaignContainsUser = false;
   campaign: Campaign;
   state = 'dashboard';
 
   public constructor(private campaignService: CampaignService, private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router, public dialog: MatDialog) {
       this.localStorage = new LocalStorageService();
       const user = JSON.parse(this.localStorage.getItem('user'));
       let campaignId = null;
@@ -43,6 +46,10 @@ export class CampaignComponent {
 
           if (this.campaign.players.indexOf(user._id)) {
             this.campaignContainsUser = true;
+
+            if (this.campaign.dungeonMaster === user._id) {
+              this.DM = true;
+            }
           }
 
           this.loaded = true;
@@ -62,5 +69,9 @@ export class CampaignComponent {
 
   public setState(state) {
     this.state = state;
+  }
+
+  public openDialog(): void {
+    const dialogRef = this.dialog.open(OptionsComponent, {});
   }
 }
