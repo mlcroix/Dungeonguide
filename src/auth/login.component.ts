@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AuthService } from './auth.service';
 import { LocalStorageService } from '../app/app.localStorageService';
+import { SignUpComponent } from './signUp.component';
 
 @Component({
     selector: 'app-login-selector',
@@ -14,7 +16,7 @@ export class LoginComponent {
     title = 'Login';
     loggedIn = false;
 
-    constructor(private authSerive: AuthService) {
+    constructor(private authSerive: AuthService, public dialog: MatDialog) {
       this.localStorage = new LocalStorageService();
 
       if (this.localStorage.getItem('user')) {
@@ -34,5 +36,9 @@ export class LoginComponent {
       this.localStorage.removeAllItems();
       this.loggedIn = false;
       window.location.reload();
+    }
+
+    public openDialog(): void {
+      const dialogRef = this.dialog.open(SignUpComponent, {});
     }
 }

@@ -4,27 +4,31 @@
         Sign out
     </button>
 </div>
-<div class='login-window' *ngIf="!loggedIn">
-  <form #f="ngForm" (ngSubmit)="login(f.value)">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input name="username" ngModel required #first="ngModel">
-    </div>
+<div class='float-right' *ngIf="!loggedIn">
+  <div class="float-left">
+      <form #f="ngForm" (ngSubmit)="login(f.value)">
+          <div class="form-group float-left">
+            <label for="username">Username</label>
+            <input name="username" ngModel required #first="ngModel">
+          </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" name="password" ngModel required #first="ngModel">
-    </div>
+          <div class="form-group float-left">
+            <label for="password">Password</label>
+            <input type="password" name="password" ngModel required #first="ngModel">
+          </div>
 
-    <button mat-button type="submit" class="button">
-        <i class="fas fa-sign-in-alt awesome-icons-22"></i>
-        Login
-    </button>
-    <button mat-button routerLink='/signup' class="button">
-      <i class="material-icons">assignment</i>
-      Sign up
-    </button>
-  </form>
+          <button mat-button type="submit" class="button">
+              <i class="fas fa-sign-in-alt awesome-icons-22"></i>
+              Login
+          </button>
+        </form>
+  </div>
+  <div class="float-left">
+      <button mat-button class="button float-left" (click)="openDialog()">
+          <i class="material-icons">assignment</i>
+          Sign up
+      </button>
+  </div>
 
 
 </div>

@@ -1,10 +1,4 @@
-.login-window {
-  float: right;
-  width: auto;
-}
-
 .form-group {
-  float: left;
   margin-left: 15px;
 }
 
@@ -17,3 +11,34 @@ label {
   margin-left: 5px;
 }
 
+
+.signup-window {
+  height: 400px;
+  width: 300px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.suForm-group {
+  width: 100%;
+  margin-bottom: 20px;
+  display:inline-block;
+
+  input {
+    display:inline-block;
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+.signup-button {
+  bottom: 0;
+}

@@ -9,7 +9,8 @@ import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
-    private url = 'https://dungeonguide.herokuapp.com/players/';
+    // private url = 'https://dungeonguide.herokuapp.com/players/';
+    private url = 'http://localhost:3000/players/';
 
   public constructor(private http: Http) { }
 
@@ -24,5 +25,14 @@ export class AuthService {
     });
   }
 
+  public SignUp(data) {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
 
+    return this.http.post(this.url + 'signup', data, options).toPromise()
+    .then(response => response)
+    .catch(error => {
+      throw new Error(error.json().message);
+    });
+  }
 }

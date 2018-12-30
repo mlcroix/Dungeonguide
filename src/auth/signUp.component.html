@@ -1,1 +1,45 @@
-<p>sign up</p>
+<div class="signup-window">
+  <h2>Sign up</h2>
+    <form (ngSubmit)="signUp(signupForm.value)" class="suForm" [formGroup]="signupForm">
+        <div class="suForm-group">
+            <b><label for="firstname">Firstname</label></b><br/>
+            <input name="firstname" formControlName="firstname" required >
+            <hr>
+        </div>
+
+        <div class="suForm-group">
+          <b><label for="lastname">Lastname</label></b><br/>
+          <input name="lastname" formControlName="lastname" required>
+          <hr>
+      </div>
+
+        <div class="suForm-group">
+            <b><label for="email">Email</label></b><br/>
+            <input name="email" formControlName="email" required>
+            <hr>
+        </div>
+
+        <div class="suForm-group">
+          <b><label for="username">Username</label></b><br/>
+          <input name="username" formControlName="username" required>
+          <hr>
+        </div>
+
+        <div class="suForm-group">
+          <b><label for="password">Password</label></b><br/>
+          <input type="password" name="password" formControlName="password" required>
+          <hr>
+        </div>
+
+        <div class="suForm-group">
+            <b><label for="password2">Password</label></b><br/>
+            <input type="password" name="password2" formControlName="password2" required>
+            <hr>
+        </div>
+
+        <button mat-button type="submit" class="button signup-button float-right" [disabled]="!signupForm.valid || !isValid()">
+            <i class="fas fa-sign-in-alt awesome-icons-22"></i>
+            Sign up
+        </button>
+      </form>
+</div>

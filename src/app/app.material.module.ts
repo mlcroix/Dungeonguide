@@ -10,6 +10,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { MatSnackBarModule } from '@angular/material';
 import 'hammerjs';
 
 @NgModule({
@@ -26,6 +27,7 @@ import 'hammerjs';
     MatProgressSpinnerModule,
     MatDialogModule,
     AngularFontAwesomeModule,
+    MatSnackBarModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -39,6 +41,7 @@ import 'hammerjs';
     MatListModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatSnackBarModule
   ],
 })
 export class AppMaterialModule { }
