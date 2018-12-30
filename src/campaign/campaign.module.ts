@@ -4,12 +4,10 @@ import { CampaignComponent } from './campaign.component';
 import { CampaignsComponent } from './campaigns.component';
 import { OptionsComponent } from './Modules/options/options.component';
 import { CampaignService } from './campaign.service';
-import { FormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../app/app.material.module';
 import { LocalStorageService } from '../app/app.localStorageService';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesModule } from './Modules/notes/notes.module';
-
 
 @NgModule({
     declarations: [
@@ -22,18 +20,21 @@ import { NotesModule } from './Modules/notes/notes.module';
         AppMaterialModule,
         RouterModule,
         NotesModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     exports: [
         CampaignComponent,
         CampaignsComponent,
         OptionsComponent,
+        ReactiveFormsModule,
     ],
     providers: [
         CampaignService,
         LocalStorageService,
     ],
     entryComponents: [
-      OptionsComponent
+      OptionsComponent,
     ]
 })
 export class CampaignModule { }

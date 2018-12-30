@@ -40,10 +40,7 @@ export class SignUpComponent {
         this.localStorage.setItem('user', JSON.stringify(result));
         window.location.reload();
       } else {
-        this.snackBar.open(message, '', {
-          duration: 5000,
-          panelClass: ['snack-bar']
-        });
+        this.openSnackbar(message);
       }
     });
   }
@@ -67,5 +64,12 @@ export class SignUpComponent {
     }
 
     return false;
+  }
+
+  public openSnackbar(message) {
+    this.snackBar.open(message, '', {
+      duration: 5000,
+      panelClass: ['snack-bar']
+    });
   }
 }

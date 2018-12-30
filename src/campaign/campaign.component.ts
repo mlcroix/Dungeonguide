@@ -58,6 +58,11 @@ export class CampaignComponent {
             this.campaign = result[0];
             if (this.campaign.players.indexOf(user._id)) {
               this.campaignContainsUser = true;
+              this.campaignService.storeCampaign(this.campaign);
+
+              if (this.campaign.dungeonMaster === user._id) {
+                this.DM = true;
+              }
             }
 
             this.loaded = true;
@@ -72,6 +77,8 @@ export class CampaignComponent {
   }
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(OptionsComponent, {});
+    const dialogRef = this.dialog.open(OptionsComponent, {
+      camp: this.campaign
+    });
   }
 }
