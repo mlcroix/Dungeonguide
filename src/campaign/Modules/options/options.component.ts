@@ -19,12 +19,16 @@ export class OptionsComponent {
   players: User[];
 
   changeCampaignNameForm: FormGroup;
+  addPlayerForm: FormGroup;
 
   public constructor(private campaignService: CampaignService, public snackBar: MatSnackBar) {
     this.campaign = this.campaignService.getStoredCampaign();
-
+    console.log(this.campaign);
     this.changeCampaignNameForm = new FormGroup({
       campaignName: new FormControl(this.campaign.name),
+    });
+    this.addPlayerForm = new FormGroup({
+      playerName: new FormControl(''),
     });
   }
 
@@ -33,7 +37,6 @@ export class OptionsComponent {
 
     if (name.length < 3) {
       this.openSnackbar('campaign must be atleast 3 characters long');
-      console.log(this);
     } else {
       this.campaignService.changeCampaignName(this.campaign._id, name).then((result) => {
         this.openSnackbar(result.message);
@@ -46,5 +49,40 @@ export class OptionsComponent {
       duration: 5000,
       panelClass: ['snack-bar']
     });
+  }
+
+  public addPlayer(form: NgForm) {
+    const name = this.addPlayerForm.controls.playerName.value;
+
+    if (name === this.campaign.dungeonMaster.username) {
+      this.openSnackbar('You can\'t add yourself to the playerlist.');
+    } else if (this.campaignContainsPlayer(this.campaign.players, name)) {
+      this.openSnackbar('the player is already in your campaign.');
+    } else if (this.campaignContainsPlayer(this.campaign.pendingPlayers, name)) {
+      this.openSnackbar('You have already invited this player');
+    } else {
+
+      this.campaignService.getPlayer(name).then((result) => {
+        if (result.length > 0) {
+          this.campaign.pendingPlayers.push(result[0]);
+          this.campaignService.updateCampaign(this.campaign).then((res) => {
+            this.openSnackbar('added player ' + name + 'to your campaign');
+          });
+          // gekkehenky2
+        } else {
+          this.openSnackbar('unable to find the player');
+        }
+      });
+    }
+  }
+
+  public campaignContainsPlayer(array, name) {
+    let result = false;
+      array.forEach(element => {
+        if (element.username === name) {
+          result = true;
+        }
+      });
+      return result;
   }
 }

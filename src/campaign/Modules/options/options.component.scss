@@ -28,3 +28,33 @@
 .option-container {
   margin-top: 50px;
 }
+
+.player-container {
+  max-height: 150px;
+  min-height: 50px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+
+.player-row {
+  height: 30px;
+  overflow: hidden;
+  margin-bottom: 2px;
+  padding-left: 10px;
+  padding-right:10px;
+  line-height: 30px;
+  background-color: rgb(32, 32, 32);
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: snow;
+    margin-top: 2px;
+  }
+}
+
+.no-players-message-box {
+  line-height: 50px;
+  text-align: center;
+}

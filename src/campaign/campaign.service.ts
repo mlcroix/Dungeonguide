@@ -6,11 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Campaign } from '../models/campaign';
+import { User } from '../models/user';
 
 @Injectable()
 export class CampaignService {
   // private url = 'https://dungeonguide.herokuapp.com/campaigns';
   private url = 'http://localhost:3000/campaigns';
+  // private playerUrl = 'https://dungeonguide.herokuapp.com/players/';
+  private playerUrl = 'http://localhost:3000/players/';
   private campaign: Campaign;
 
   public constructor(private http: Http) {
@@ -64,13 +67,32 @@ export class CampaignService {
   }
 
   public changeCampaignName(campaignId, name): Promise<any> {
-    console.log(campaignId);
-    console.log(name);
     const data = { 'campaignId': campaignId, 'name': name };
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.url + '/changename', data, options).toPromise()
+    .then(response => response.json())
+    .catch(error => {
+      throw new Error(error);
+    });
+  }
+
+  public getPlayer(name): Promise<User[]> {
+    return this.http.get(this.playerUrl + 'username/' + name)
+      .toPromise()
+      .then(response => response.json() as User[])
+      .catch(error => {
+        throw new Error(error.json().message);
+      });
+  }
+
+  public updateCampaign(campaign) {
+    const data = { 'campaign': campaign };
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url + '/update', data, options).toPromise()
     .then(response => response.json())
     .catch(error => {
       throw new Error(error);
