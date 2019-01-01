@@ -1,18 +1,22 @@
 <div class="options-window">
   <h2>campaign options</h2>
+  <div class="option-container">
+      <form (ngSubmit)="changeCampaignName(changeCampaignNameForm.value)" class="changeCampaignNameForm" [formGroup]="changeCampaignNameForm">
+          <div class="Form-group">
+              <b><label for="campaignName">campaign name</label></b><br/>
+              <input name="campaignName" formControlName="campaignName" required>
+              <hr>
+          </div>
+        <button mat-button type="submit" class="submitButton float-right" [disabled]="!changeCampaignNameForm.valid">
+            <i class="fas fa-sign-in-alt awesome-icons-22"></i>
+            Submit
+        </button>
+      </form>
+  </div>
 
-  <form (ngSubmit)="changeCampaignName(changeCampaignNameForm.value)" class="changeCampaignNameForm" [formGroup]="changeCampaignNameForm">
-      <div class="Form-group">
-          <b><label for="campaignName">campaign name</label></b><br/>
-          <input name="campaignName" formControlName="campaignName" required>
-          <hr>
-      </div>
-
-      <button mat-button type="submit" class="submitButton float-right" [disabled]="!changeCampaignNameForm.valid">
-          <i class="fas fa-sign-in-alt awesome-icons-22"></i>
-          Submit
-      </button>
-    </form>
+  <div class="option-container">
+      <b><label>Campaign Players</label></b><br/>
+  </div>
 
 
 </div>

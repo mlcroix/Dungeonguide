@@ -15,7 +15,7 @@
       <button class="module-button" (click)="setState('world lore')" [class.isActive]="state === 'world lore'">
           <i class="fas fa-globe-asia awesome-icons-22" title="world lore"></i>
       </button>
-      <div *ngIf="DM">
+      <div *ngIf="isDM">
           <button class="module-button" (click)="openDialog()">
               <i class="fas fa-cog awesome-icons-22" title="options"></i>
           </button>

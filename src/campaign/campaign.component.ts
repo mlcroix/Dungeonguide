@@ -7,6 +7,8 @@ import { Campaign } from '../models/campaign';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { OptionsComponent } from './Modules/options/options.component';
+import { User } from '../models/user';
+import { getTypeNameForDebugging } from '@angular/common/src/directives/ng_for_of';
 
 @Component({
   selector: 'app-campaign-selector',
@@ -19,7 +21,7 @@ export class CampaignComponent {
   localStorage: LocalStorageService;
   loggedIn = false;
   loaded = false;
-  DM = false;
+  isDM = false;
   campaignContainsUser = false;
   campaign: Campaign;
   state = 'dashboard';
@@ -46,9 +48,8 @@ export class CampaignComponent {
 
           if (this.campaign.players.indexOf(user._id)) {
             this.campaignContainsUser = true;
-
-            if (this.campaign.dungeonMaster === user._id) {
-              this.DM = true;
+            if (this.campaign.dungeonMaster._id === user._id) {
+              this.isDM = true;
             }
           }
 
@@ -60,8 +61,8 @@ export class CampaignComponent {
               this.campaignContainsUser = true;
               this.campaignService.storeCampaign(this.campaign);
 
-              if (this.campaign.dungeonMaster === user._id) {
-                this.DM = true;
+              if (this.campaign.dungeonMaster._id === user._id) {
+                this.isDM = true;
               }
             }
 
@@ -77,8 +78,6 @@ export class CampaignComponent {
   }
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(OptionsComponent, {
-      camp: this.campaign
-    });
+    const dialogRef = this.dialog.open(OptionsComponent, { });
   }
 }

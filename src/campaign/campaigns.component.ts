@@ -56,7 +56,7 @@ export class CampaignsComponent {
   }
 
   public playeridDungeonMaster(campaign) {
-    if (campaign.dungeonMaster === this.user._id) {
+    if (campaign.dungeonMaster._id === this.user._id) {
       return true;
     }
     return false;
