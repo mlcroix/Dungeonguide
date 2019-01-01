@@ -22,7 +22,7 @@
                     <div class="float-left">
                       {{ Player.username }}
                     </div>
-                    <button class="float-right">
+                    <button class="float-right" (click)="removePlayerFromCampaign('players', Player)">
                         <i class="material-icons">
                             delete
                         </i>
@@ -44,7 +44,7 @@
                   <div class="float-left">
                     {{ Player.username }}
                   </div>
-                  <button class="float-right">
+                  <button class="float-right" (click)="removePlayerFromCampaign('pending', Player)">
                       <i class="material-icons">
                           delete
                       </i>

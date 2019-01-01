@@ -76,6 +76,28 @@ export class OptionsComponent {
     }
   }
 
+  public removePlayerFromCampaign(list, player) {
+    if (list === 'players') {
+      this.campaign.players.forEach(element => {
+        if (player === element) {
+          this.removeItemFromArray(element, this.campaign.players);
+        }
+      });
+    }
+
+    if (list === 'pending') {
+      this.campaign.pendingPlayers.forEach(element => {
+        if (player === element) {
+          this.removeItemFromArray(element, this.campaign.pendingPlayers);
+        }
+      });
+    }
+
+    this.campaignService.updateCampaign(this.campaign).then((result) => {
+      this.openSnackbar('player ' + player.username + ' has been removed from the campaign.');
+    });
+  }
+
   public campaignContainsPlayer(array, name) {
     let result = false;
       array.forEach(element => {
@@ -84,5 +106,14 @@ export class OptionsComponent {
         }
       });
       return result;
+  }
+
+  private removeItemFromArray(item, array) {
+    for (let i = 0; i < array.length; i++) {
+      if (item === array[i]) {
+        array.splice(i, 1);
+        return i;
+      }
+    }
   }
 }
