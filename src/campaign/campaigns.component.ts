@@ -29,8 +29,6 @@ export class CampaignsComponent {
         this.Campaigns = result;
         this.loaded = true;
         this.user = user;
-        console.log(this.Campaigns);
-        console.log(this.user);
       });
     }
   }

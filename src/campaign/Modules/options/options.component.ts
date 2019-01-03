@@ -23,7 +23,6 @@ export class OptionsComponent {
 
   public constructor(private campaignService: CampaignService, public snackBar: MatSnackBar) {
     this.campaign = this.campaignService.getStoredCampaign();
-    console.log(this.campaign);
     this.changeCampaignNameForm = new FormGroup({
       campaignName: new FormControl(this.campaign.name),
     });

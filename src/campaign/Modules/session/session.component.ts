@@ -32,7 +32,6 @@ export class SessionComponent {
             }
 
             this.loaded = true;
-            console.log(this.loaded);
           });
         }
       }
@@ -41,7 +40,6 @@ export class SessionComponent {
 
     public SelectStory(sessionitem) {
         this.SelectedItem = sessionitem;
-        console.log(this.SelectedItem);
     }
 
     public AddStory() {
@@ -53,7 +51,6 @@ export class SessionComponent {
 
     public RemoveStory() {
       this.sessionService.removeSession(this.SelectedItem).then((result ) => {
-        console.log(result);
         if (result.deleted) {
           this.removeItemFromArray(this.SelectedItem, this.sessions);
           if (this.sessions.length > 0) {

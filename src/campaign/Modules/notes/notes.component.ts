@@ -108,7 +108,6 @@ export class NotesComponent {
   }
 
   public saveNote() {
-    console.log(this.SelectedItem);
     this.SelectedItem.text = this.editedText;
     this.SelectedItem.name = this.editedName;
 

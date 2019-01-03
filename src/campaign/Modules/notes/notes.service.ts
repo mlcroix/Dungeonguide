@@ -26,7 +26,6 @@ export class NotesService {
       const observable = new Observable(observer => {
         this.connection = io(this.WSurl + '/notes');
         this.connection.on('myNotes', (data) => {
-          console.log('Received message from Websocket Server ' + data);
           observer.next(data);
         });
         return () => {
