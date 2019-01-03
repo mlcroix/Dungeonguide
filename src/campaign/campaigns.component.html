@@ -1,22 +1,39 @@
 <div *ngIf="loaded">
     <div *ngFor="let Campaign of Campaigns">
-        <mat-card class="campaign-card">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-                <p>{{ Campaign.name }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button class="button-select" (click)="selectCampaign(Campaign)" [routerLink]="['/campaign', Campaign._id]">
-                    <i class="material-icons">arrow_forward_ios</i>
-                </button>
-                <button class="button-favorite">
-                    <i class="material-icons">favorite_border</i>
-                </button>
-                <button class="button-delete" *ngIf="playeridDungeonMaster(Campaign)" (click)="removeCampaign(Campaign)">
-                    <i class="material-icons">delete</i>
-                </button>
-            </mat-card-actions>
-          </mat-card>
+      <div *ngIf="!isPendingPlayer(Campaign)">
+          <mat-card class="campaign-card">
+              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              <mat-card-content>
+                <p><b>{{ Campaign.name }}</b></p>
+                  <p><b>DM:</b> {{ Campaign.dungeonMaster.username }}</p>
+              </mat-card-content>
+              <mat-card-actions>
+                  <button class="button-select float-left" (click)="selectCampaign(Campaign)" [routerLink]="['/campaign', Campaign._id]">
+                      <i class="material-icons">arrow_forward_ios</i>
+                  </button>
+                  <button class="button-delete float-right" *ngIf="playeridDungeonMaster(Campaign)" (click)="removeCampaign(Campaign)">
+                      <i class="material-icons">delete</i>
+                  </button>
+              </mat-card-actions>
+            </mat-card>
+      </div>
+      <div *ngIf="isPendingPlayer(Campaign)">
+          <mat-card class="campaign-card pending-campaign">
+              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              <mat-card-content>
+                  <p><b>{{ Campaign.name }}</b></p>
+                  <p><b>DM:</b> {{ Campaign.dungeonMaster.username }}</p>
+              </mat-card-content>
+              <mat-card-actions>
+                  <button class="button-select float-left" (click)="pendingCampaign(Campaign, 'accept')">
+                    <i class="fas fa-check awesome-icons-22"></i>
+                  </button>
+                  <button class="button-delete float-right" (click)="pendingCampaign(Campaign, 'decline')">
+                    <i class="fas fa-times awesome-icons-22"></i>
+                  </button>
+              </mat-card-actions>
+            </mat-card>
+      </div>
     </div>
 
     <mat-card class="new-campaign-card" (click)="createCampaign()">

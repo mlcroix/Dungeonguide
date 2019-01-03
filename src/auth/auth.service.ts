@@ -9,8 +9,8 @@ import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
-    // private url = 'https://dungeonguide.herokuapp.com/players/';
-    private url = 'http://localhost:3000/players/';
+    private url = 'https://dungeonguidev2.herokuapp.com/players/';
+    // private url = 'http://localhost:3000/players/';
 
   public constructor(private http: Http) { }
 

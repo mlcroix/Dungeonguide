@@ -12,9 +12,9 @@ import { Note } from '../../../models/note';
 @Injectable()
 export class NotesService {
   private url = 'https://dungeonguidev2.herokuapp.com/notes/';
-  //private url = 'http://127.0.0.1:3000/notes/';
+  // private url = 'http://127.0.0.1:3000/notes/';
   private WSurl = 'https://dungeonguidev2.herokuapp.com';
-  //private WSurl = 'http://127.0.0.1:3000';
+  // private WSurl = 'http://127.0.0.1:3000';
   private myNotesSubscription: Subscription;
   private sharedNotesSubscription: Subscription;
   private connection;

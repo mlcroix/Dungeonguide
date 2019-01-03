@@ -10,10 +10,10 @@ import { User } from '../models/user';
 
 @Injectable()
 export class CampaignService {
-  // private url = 'https://dungeonguide.herokuapp.com/campaigns';
-  private url = 'http://localhost:3000/campaigns';
-  // private playerUrl = 'https://dungeonguide.herokuapp.com/players/';
-  private playerUrl = 'http://localhost:3000/players/';
+  private url = 'https://dungeonguidev2.herokuapp.com/campaigns';
+  // private url = 'http://localhost:3000/campaigns';
+  private playerUrl = 'https://dungeonguidev2.herokuapp.com/players/';
+  // private playerUrl = 'http://localhost:3000/players/';
   private campaign: Campaign;
 
   public constructor(private http: Http) {
