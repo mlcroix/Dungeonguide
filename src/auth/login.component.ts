@@ -4,6 +4,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AuthService } from './auth.service';
 import { LocalStorageService } from '../app/app.localStorageService';
 import { SignUpComponent } from './signUp.component';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-login-selector',
@@ -16,7 +17,7 @@ export class LoginComponent {
     title = 'Login';
     loggedIn = false;
 
-    constructor(private authSerive: AuthService, public dialog: MatDialog) {
+    constructor(private authService: AuthService, public dialog: MatDialog, public snackBar: MatSnackBar) {
       this.localStorage = new LocalStorageService();
 
       if (this.localStorage.getItem('user')) {
@@ -25,10 +26,16 @@ export class LoginComponent {
     }
 
     public login(f: NgForm) {
-        this.authSerive.Login(f).then((result) => {
-          this.localStorage.setItem('user', JSON.stringify(result));
-          this.loggedIn = true;
-          window.location.reload();
+        this.authService.Login(f).then((result) => {
+          if (result.status === 200) {
+            this.localStorage.setItem('user', JSON.stringify(result.json()));
+            this.loggedIn = true;
+            window.location.reload();
+          } else if (result.status === 201) {
+            this.openSnackbar('Incorrect username or password.');
+          } else {
+            this.openSnackbar('Unable to Login.');
+          }
         });
     }
 
@@ -40,5 +47,12 @@ export class LoginComponent {
 
     public openDialog(): void {
       const dialogRef = this.dialog.open(SignUpComponent, {});
+    }
+
+    public openSnackbar(message) {
+      this.snackBar.open(message, '', {
+        duration: 5000,
+        panelClass: ['snack-bar']
+      });
     }
 }

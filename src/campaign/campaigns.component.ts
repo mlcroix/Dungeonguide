@@ -29,6 +29,7 @@ export class CampaignsComponent {
         this.Campaigns = result;
         this.loaded = true;
         this.user = user;
+        this.loggedIn = true;
       });
     }
   }
