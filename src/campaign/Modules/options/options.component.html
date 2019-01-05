@@ -1,0 +1,80 @@
+<div class="options-window">
+  <h2>campaign options</h2>
+  <div class="option-container">
+      <form (ngSubmit)="changeCampaignName(changeCampaignNameForm.value)" class="changeCampaignNameForm" [formGroup]="changeCampaignNameForm">
+          <div class="Form-group">
+              <b><label for="campaignName">campaign name</label></b><br/>
+              <input name="campaignName" formControlName="campaignName" required>
+              <hr>
+          </div>
+        <button mat-button type="submit" class="submitButton float-right" [disabled]="!changeCampaignNameForm.valid">
+            <i class="fas fa-sign-in-alt awesome-icons-22"></i>
+            Submit
+        </button>
+      </form>
+  </div>
+  <div class="option-container">
+      <b><label>Campaign Players</label></b><br/>
+      <div class="player-container">
+          <div *ngIf="campaign.players.length > 0">
+              <div *ngFor="let Player of campaign.players" >
+                  <div class="player-row">
+                    <div class="float-left">
+                      {{ Player.username }}
+                    </div>
+                    <button class="float-right" (click)="removePlayerFromCampaign('players', Player)">
+                        <i class="material-icons">
+                            delete
+                        </i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div *ngIf="campaign.players.length === 0">
+              <div class="no-players-message-box">
+                  <p>no players</p>
+              </div>
+          </div>
+      </div>
+      <b><label>Pending players invites</label></b><br/>
+      <div class="player-container">
+        <div *ngIf="campaign.pendingPlayers.length > 0">
+            <div *ngFor="let Player of campaign.pendingPlayers" >
+                <div class="player-row">
+                  <div class="float-left">
+                    {{ Player.username }}
+                  </div>
+                  <button class="float-right" (click)="removePlayerFromCampaign('pending', Player)">
+                      <i class="material-icons">
+                          delete
+                      </i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="campaign.pendingPlayers.length === 0">
+          <div class="no-players-message-box">
+              <p>no pending players</p>
+          </div>
+        </div>
+      </div>
+      <div>
+          <form (ngSubmit)="addPlayer(addPlayerForm.value)" class="addPlayerForm" [formGroup]="addPlayerForm">
+              <div class="Form-group">
+                  <b><label>Add Players</label></b><br/>
+                  <input name="playerName" formControlName="playerName" required>
+                  <hr>
+              </div>
+            <button mat-button type="submit" class="submitButton float-right" [disabled]="!addPlayerForm.valid">
+                <i class="fas fa-sign-in-alt awesome-icons-22"></i>
+                Add
+            </button>
+          </form>
+      </div>
+      <div class="delete-campaign-container">
+          <button class="button-delete" (click)="removeCampaign()">
+              <b>Delete campaign</b>
+            </button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+.options-window {
+  height: 600px;
+  width: 500px;
+}
+
+.Form-group {
+  width: 100%;
+  margin-bottom: 20px;
+  display:inline-block;
+
+  input {
+    display:inline-block;
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+.submitButton {
+    margin-top: -20px;
+}
+
+.option-container {
+  margin-top: 50px;
+}
+
+.player-container {
+  max-height: 150px;
+  min-height: 50px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+
+.player-row {
+  height: 30px;
+  overflow: hidden;
+  margin-bottom: 2px;
+  padding-left: 10px;
+  padding-right:10px;
+  line-height: 30px;
+  background-color: rgb(32, 32, 32);
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: snow;
+    margin-top: 2px;
+  }
+}
+
+.no-players-message-box {
+  line-height: 50px;
+  text-align: center;
+}
+
+.delete-campaign-container {
+  width: 100%;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.button-delete {
+  height: 40px;
+  width: 200px;
+  margin: auto;
+  border: solid 3px;
+  border-color: rgba(151, 13, 13, 0.979);
+  color: white;
+  background-color: rgba(255, 32, 32, 0.979);
+  &:hover {
+    background-color: rgba(151, 13, 13, 0.979);
+  }
+}

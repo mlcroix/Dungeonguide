@@ -29,6 +29,7 @@ export class CampaignsComponent {
         this.Campaigns = result;
         this.loaded = true;
         this.user = user;
+        this.loggedIn = true;
       });
     }
   }
@@ -37,15 +38,8 @@ export class CampaignsComponent {
     this.campaignService.createCampaign(JSON.parse(this.localStorage.getItem('user'))._id).then((result) => {
       if (result) {
         this.Campaigns.push(result);
-      }
-    });
-  }
-
-  public removeCampaign(campaign) {
-    this.campaignService.removeCampaign(this.user._id, campaign._id).then((result) => {
-      if (result.deleted) {
-        const index = this.Campaigns.indexOf(campaign);
-        this.Campaigns.splice(index, 1);
+        this.campaignService.storeCampaign(null);
+        this.router.navigate(['/campaign/' + result._id]);
       }
     });
   }
@@ -56,9 +50,40 @@ export class CampaignsComponent {
   }
 
   public playeridDungeonMaster(campaign) {
-    if (campaign.dungeonMaster === this.user._id) {
+    if (campaign.dungeonMaster._id === this.user._id) {
       return true;
     }
     return false;
+  }
+
+  public isPendingPlayer(campaign) {
+    let result = false;
+    campaign.pendingPlayers.forEach(player => {
+      if (player.username === this.user.username) {
+        result = true;
+      }
+    });
+    return result;
+  }
+
+  public pendingCampaign(campaign, action) {
+    if (action === 'accept') {
+      this.removeItemFromArray(this.user, campaign.pendingPlayers);
+      campaign.players.push(this.user);
+      this.campaignService.updateCampaign(campaign).then((result) => {});
+    } else if (action === 'decline') {
+      this.removeItemFromArray(this.user, campaign.pendingPlayers);
+      this.campaignService.updateCampaign(campaign).then((result) => {});
+      this.removeItemFromArray(campaign, this.Campaigns);
+    }
+  }
+
+  private removeItemFromArray(item, array) {
+    for (let i = 0; i < array.length; i++) {
+      if (item._id === array[i]._id) {
+        array.splice(i, 1);
+        return i;
+      }
+    }
   }
 }

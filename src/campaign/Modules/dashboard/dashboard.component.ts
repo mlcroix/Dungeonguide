@@ -21,8 +21,6 @@ export class DashboardComponent {
     this.dashboardService = service;
 
     this.user = <User>JSON.parse(this.localStorage.getItem('user'));
-    console.log(this.user._id);
-
     if (this.user) {
         this.loaded = true;
       }

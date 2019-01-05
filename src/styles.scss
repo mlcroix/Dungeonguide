@@ -45,6 +45,10 @@ body {
   font-size: 22px;
 }
 
+.awesome-icons-180 {
+  font-size: 180px;
+}
+
 .float-left {
   float: left;
 }
@@ -56,4 +60,24 @@ body {
 .snack-bar {
   color: white;
   background-color: rgb(66, 66, 66);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(48, 48, 48);
 }

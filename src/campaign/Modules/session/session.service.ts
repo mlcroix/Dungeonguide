@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class SessionService {
-  private url = 'https://dungeonguide.herokuapp.com/sessions/';
+  private url = 'https://dungeonguidev2.herokuapp.com/sessions/';
 
   public constructor(private http: Http) {
   }
