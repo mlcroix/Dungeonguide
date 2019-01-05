@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CampaignService } from '../../campaign.service';
 import { Campaign } from '../../../models/campaign';
 import { User } from '../../../models/user';
 import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class OptionsComponent {
   changeCampaignNameForm: FormGroup;
   addPlayerForm: FormGroup;
 
-  public constructor(private campaignService: CampaignService, public snackBar: MatSnackBar) {
+  public constructor(private campaignService: CampaignService, public snackBar: MatSnackBar,
+    private router: Router, private dialog: MatDialog) {
     this.campaign = this.campaignService.getStoredCampaign();
     this.changeCampaignNameForm = new FormGroup({
       campaignName: new FormControl(this.campaign.name),
@@ -114,5 +117,14 @@ export class OptionsComponent {
         return i;
       }
     }
+  }
+
+  public removeCampaign() {
+    this.campaignService.removeCampaign(this.campaign.dungeonMaster._id, this.campaign._id).then((result) => {
+      if (result.deleted) {
+        this.dialog.closeAll();
+        this.router.navigate(['/campaigns']);
+      }
+    });
   }
 }

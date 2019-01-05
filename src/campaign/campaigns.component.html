@@ -12,9 +12,6 @@
                       <button class="button-select float-left" (click)="selectCampaign(Campaign)" [routerLink]="['/campaign', Campaign._id]">
                           <i class="material-icons">arrow_forward_ios</i>
                       </button>
-                      <button class="button-delete float-right" *ngIf="playeridDungeonMaster(Campaign)" (click)="removeCampaign(Campaign)">
-                          <i class="material-icons">delete</i>
-                      </button>
                   </mat-card-actions>
                 </mat-card>
           </div>
