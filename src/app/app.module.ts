@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
 import { AppMaterialModule } from './app.material.module';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AuthModule } from '../auth/auth.module';
 import { CampaignModule } from '../campaign/campaign.module';
@@ -25,7 +25,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     AppMaterialModule,
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 

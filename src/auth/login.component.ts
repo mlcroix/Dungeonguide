@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { LocalStorageService } from '../app/app.localStorageService';
 import { SignUpComponent } from './signUp.component';
 import {MatSnackBar} from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login-selector',
@@ -17,7 +18,7 @@ export class LoginComponent {
     title = 'Login';
     loggedIn = false;
 
-    constructor(private authService: AuthService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+    constructor(private authService: AuthService, public dialog: MatDialog, public snackBar: MatSnackBar, private router: Router) {
       this.localStorage = new LocalStorageService();
 
       if (this.localStorage.getItem('user')) {
@@ -42,7 +43,7 @@ export class LoginComponent {
     public logout() {
       this.localStorage.removeAllItems();
       this.loggedIn = false;
-      window.location.reload();
+      this.router.navigate(['/']);
     }
 
     public openDialog(): void {

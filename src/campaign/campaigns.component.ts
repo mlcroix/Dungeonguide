@@ -38,7 +38,8 @@ export class CampaignsComponent {
     this.campaignService.createCampaign(JSON.parse(this.localStorage.getItem('user'))._id).then((result) => {
       if (result) {
         this.Campaigns.push(result);
-        window.location.reload();
+        this.campaignService.storeCampaign(null);
+        this.router.navigate(['/campaign/' + result._id]);
       }
     });
   }
