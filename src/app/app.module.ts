@@ -8,7 +8,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AuthModule } from '../auth/auth.module';
 import { CampaignModule } from '../campaign/campaign.module';
-import { SessionModule } from '../campaign/modules/session/session.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     AuthModule,
     CampaignModule,
-    SessionModule,
     AppRoutingModule,
     AppMaterialModule,
   ],

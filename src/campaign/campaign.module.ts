@@ -8,7 +8,7 @@ import { AppMaterialModule } from '../app/app.material.module';
 import { LocalStorageService } from '../app/app.localStorageService';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesModule } from './Modules/notes/notes.module';
-
+import { SessionModule } from './Modules/sessions/session.module';
 @NgModule({
     declarations: [
         CampaignComponent,
@@ -22,6 +22,7 @@ import { NotesModule } from './Modules/notes/notes.module';
         NotesModule,
         FormsModule,
         ReactiveFormsModule,
+        SessionModule,
     ],
     exports: [
         CampaignComponent,

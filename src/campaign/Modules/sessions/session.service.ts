@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { SessionItem } from '../../../models/session-item';
+import { Session } from '../../../models/session';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -14,19 +14,19 @@ export class SessionService {
   public constructor(private http: Http) {
   }
 
- public getSessions(campaignid): Promise<SessionItem[]> {
+ public getSessions(campaignid): Promise<Session[]> {
   return this.http.get(this.url + '/' + campaignid)
     .toPromise()
-    .then(response => response.json() as SessionItem[])
+    .then(response => response.json() as Session[])
     .catch(error => {
       throw new Error(error.json().message);
     });
 }
 
-public createSessions(campaignId): Promise<SessionItem> {
+public createSessions(campaignId): Promise<Session> {
   return this.http.get(this.url + campaignId + '/create')
     .toPromise()
-    .then(response => response.json() as SessionItem)
+    .then(response => response.json() as Session)
     .catch(error => {
       throw new Error(error.json().message);
     });

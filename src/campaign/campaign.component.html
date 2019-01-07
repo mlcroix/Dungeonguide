@@ -6,8 +6,8 @@
       <button class="module-button" (click)="setState('notes')" [class.isActive]="state === 'notes'">
           <i class="fas fa-sticky-note awesome-icons-22" title="notes"></i>
       </button>
-      <button class="module-button" (click)="setState('session history')" [class.isActive]="state === 'session history'">
-          <i class="fas fa-book-open awesome-icons-22" title="session history"></i>
+      <button class="module-button" (click)="setState('sessions')" [class.isActive]="state === 'sessions'">
+          <i class="fas fa-book-open awesome-icons-22" title="sessions"></i>
       </button>
       <button class="module-button" (click)="setState('players')" [class.isActive]="state === 'players'">
           <i class="fas fa-users awesome-icons-22" title="players"></i>
@@ -30,8 +30,8 @@
         <div *ngIf="state=='notes'">
           <app-notes-selector></app-notes-selector>
         </div>
-        <div *ngIf="state=='session history'">
-          <h3>session history</h3>
+        <div *ngIf="state=='sessions'">
+          <app-session-selector></app-session-selector>
         </div>
         <div *ngIf="state=='players'">
           <h3>players</h3>

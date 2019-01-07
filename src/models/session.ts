@@ -1,4 +1,4 @@
-export class SessionItem {
+export class Session {
     public _id: string;
     public campaignId: string;
     public name: string;

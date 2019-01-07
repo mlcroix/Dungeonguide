@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../auth/login.component';
-import { SessionComponent } from '../campaign/modules/session/session.component';
 import { CampaignsComponent } from '../campaign/campaigns.component';
 import { CampaignComponent } from '../campaign/campaign.component';
 

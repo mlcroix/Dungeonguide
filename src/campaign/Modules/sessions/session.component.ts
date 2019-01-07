@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
-import { SessionItem } from '../../../models/session-item';
+import { Component } from '@angular/core';
+import { Session } from '../../../models/session';
 import { SessionService } from './session.service';
 import { Observable, Subscription } from 'rxjs';
 import { LocalStorageService } from '../../../app/app.localStorageService';
@@ -14,29 +14,34 @@ import { LocalStorageService } from '../../../app/app.localStorageService';
 export class SessionComponent {
     localStorage: LocalStorageService;
     loaded = false;
+    loggedIn = false;
     SelectedItem = null;
-    public sessions: SessionItem[];
+    public sessions: Session[];
 
-    constructor(private sessionService: SessionService) {
+    constructor(private service: SessionService) {
       this.localStorage = new LocalStorageService();
-
       const user = JSON.parse(this.localStorage.getItem('user'));
       const campaign = JSON.parse(localStorage.getItem('campaign'));
+      console.log('meep');
+/*
       if (user) {
+        this.loggedIn = true;
         if (campaign) {
-          this.sessionService.getSessions(campaign._id).then((result) => {
+          this.service.getSessions(campaign._id).then((result) => {
             this.sessions = result;
 
             if (this.sessions.length > 0) {
-              this.SelectStory(this.sessions[0]);
+              this.SelectedItem(this.sessions[0]);
             }
 
             this.loaded = true;
           });
         }
       }
-
+      */
     }
+
+    /*
 
     public SelectStory(sessionitem) {
         this.SelectedItem = sessionitem;
@@ -70,4 +75,5 @@ export class SessionComponent {
         }
       }
     }
+    */
 }
