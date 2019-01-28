@@ -31,7 +31,7 @@
           <app-notes-selector></app-notes-selector>
         </div>
         <div *ngIf="state=='sessions'">
-          <app-session-selector></app-session-selector>
+          <app-session-selector [campaign]=campaign [user]=user></app-session-selector>
         </div>
         <div *ngIf="state=='players'">
           <h3>players</h3>

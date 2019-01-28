@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Session } from '../../../models/session';
 import { SessionService } from './session.service';
 import { Observable, Subscription } from 'rxjs';
 import { LocalStorageService } from '../../../app/app.localStorageService';
+import { Campaign } from '../../../models/campaign';
+import { User } from '../../../models/user';
 
 
 @Component({
@@ -11,23 +13,23 @@ import { LocalStorageService } from '../../../app/app.localStorageService';
     styleUrls: ['./session.component.scss']
 })
 
-export class SessionComponent {
+export class SessionComponent implements OnInit {
+    @Input() campaign: Campaign;
+    @Input() user: User;
     localStorage: LocalStorageService;
+    sessionService: SessionService;
     loaded = false;
     loggedIn = false;
     SelectedItem = null;
-    public sessions: Session[];
+    sessions = [];
+    sessionType = 'sessions';
+    today = new Date;
 
-    constructor(private service: SessionService) {
-      this.localStorage = new LocalStorageService();
-      const user = JSON.parse(this.localStorage.getItem('user'));
-      const campaign = JSON.parse(localStorage.getItem('campaign'));
-      console.log('meep');
-/*
-      if (user) {
+    ngOnInit() {
+      if (this.user) {
         this.loggedIn = true;
-        if (campaign) {
-          this.service.getSessions(campaign._id).then((result) => {
+        if (this.campaign) {
+          this.service.getSessions(this.campaign._id).then((result) => {
             this.sessions = result;
 
             if (this.sessions.length > 0) {
@@ -35,17 +37,45 @@ export class SessionComponent {
             }
 
             this.loaded = true;
+
+            const sess3 = new Session;
+            sess3.date = new Date((new Date()).setDate(this.today.getDate() + 7));
+            sess3.name = 'next week';
+            this.sessions.push(sess3);
+            const sess = new Session;
+            sess.date = this.today;
+            sess.name = 'today';
+            this.sessions.push(sess);
+            const sess2 = new Session;
+            sess2.date = new Date((new Date()).setDate(this.today.getDate() - 7));
+            sess2.name = 'last week';
+            this.sessions.push(sess2);
+            console.log(this.sessions);
+
+            this.sessions.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
           });
         }
       }
-      */
+    }
+
+    constructor(private service: SessionService) {
+      this.localStorage = new LocalStorageService();
+      this.sessionService = service;
+    }
+
+    public selectSession(session) {
+      this.SelectedItem = session;
+    }
+
+    public isSelected(session) {
+      if (session === this.SelectedItem) {
+        return true;
+      }
+
+      return false;
     }
 
     /*
-
-    public SelectStory(sessionitem) {
-        this.SelectedItem = sessionitem;
-    }
 
     public AddStory() {
       this.sessionService.createSessions('5b018b0760b4261e1badbfe7').then((result) => {

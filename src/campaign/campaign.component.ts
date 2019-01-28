@@ -17,19 +17,19 @@ import { getTypeNameForDebugging } from '@angular/common/src/directives/ng_for_o
 })
 
 export class CampaignComponent {
-
   localStorage: LocalStorageService;
   loggedIn = false;
   loaded = false;
   isDM = false;
   campaignContainsUser = false;
   campaign: Campaign;
+  user: User;
   state = 'dashboard';
 
   public constructor(private campaignService: CampaignService, private route: ActivatedRoute,
     private router: Router, public dialog: MatDialog) {
       this.localStorage = new LocalStorageService();
-      const user = JSON.parse(this.localStorage.getItem('user'));
+      this.user = JSON.parse(this.localStorage.getItem('user'));
       let campaignId = null;
 
       this.route.paramMap.subscribe(params => {campaignId = params.get('id'); });
@@ -40,15 +40,15 @@ export class CampaignComponent {
         }
       });
 
-      if (user) {
+      if (this.user) {
         this.loggedIn = true;
 
         if (this.campaignService.getStoredCampaign() != null) {
           this.campaign = this.campaignService.getStoredCampaign();
 
-          if (this.campaign.players.indexOf(user._id)) {
+          if (this.campaign.players.indexOf(this.user)) {
             this.campaignContainsUser = true;
-            if (this.campaign.dungeonMaster._id === user._id) {
+            if (this.campaign.dungeonMaster._id === this.user._id) {
               this.isDM = true;
             }
           }
@@ -57,11 +57,11 @@ export class CampaignComponent {
         } else {
           this.campaignService.getCampaign(campaignId).then((result) => {
             this.campaign = result[0];
-            if (this.campaign.players.indexOf(user._id)) {
+            if (this.campaign.players.indexOf(this.user)) {
               this.campaignContainsUser = true;
               this.campaignService.storeCampaign(this.campaign);
 
-              if (this.campaign.dungeonMaster._id === user._id) {
+              if (this.campaign.dungeonMaster._id === this.user._id) {
                 this.isDM = true;
               }
             }

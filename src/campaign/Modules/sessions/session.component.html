@@ -1,6 +1,21 @@
 <div class="container">
     <div class="menu float-left">
-      <p>menu</p>
+      <div class="TabButtonContainer">
+        <button (click)="sessionType = 'sessions'" class="tab-button" [class.active-tab-button]="sessionType == 'sessions'">Sessions</button>
+        <button (click)="sessionType = 'history'" class="tab-button" [class.active-tab-button]="sessionType == 'history'">History</button>
+      </div>
+      <div *ngFor="let session of sessions">
+          <div *ngIf="sessionType == 'sessions' && session.date >= today">
+              <div class="session-button" (click)='selectSession(session); editMode = false'  [class.active-session-button]="isSelected(session)">
+                  <p>{{ session.name }}</p>
+              </div>
+          </div>
+          <div *ngIf="sessionType == 'history' && session.date < today">
+              <div class="session-button" (click)='selectSession(session); editMode = false'  [class.active-session-button]="isSelected(session)">
+                  <p>{{ session.name }}</p>
+              </div>
+          </div>
+      </div>
     </div>
     <div class="session-container float-right">
       <p>container</p>
